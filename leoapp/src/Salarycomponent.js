@@ -156,7 +156,7 @@ class ListarColaboradores extends React.Component  {
                                 "last": "Zamora"
                               }
                             }
-                          ],false)
+                          ],this.state.estadoColaborador)
             })
         } else {
             this.setState({                      
@@ -225,7 +225,7 @@ class ListarColaboradores extends React.Component  {
                         "last": "Zamora"
                       }
                     }
-                  ],true)
+                  ],this.state.estadoColaborador)
             })
         }
        
