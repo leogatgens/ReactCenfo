@@ -63,7 +63,7 @@ class ListarColaboradores extends React.Component  {
         super(props);
         this.state = {     
             estadoColaborador : true,     
-            colaboradoresActivos :   [{}]
+            colaboradoresActivos :   []
         };
        this.handleClick = this.handleClick.bind(this);
       }
@@ -74,15 +74,16 @@ class ListarColaboradores extends React.Component  {
                 <>
                     <h1>Renta colaboradores activos 2018</h1>
                     <button onClick={this.handleClick}> { (this.state.estadoColaborador) ? "Mostrar renta activos" : "Mostrar renta inactivos"}</button>
-                    { this.state.colaboradoresActivos.map((usuario,i) => {
-                       
+                    { this.state.colaboradoresActivos.map((usuario,i) => {                    
                             return (
+
                                 <DetalleColaborador className="" key={i} nombre = {usuario.nombre} 
                                 salarioEnColones = {usuario.Salario}  
                                 Renta = {usuario.Renta} />
+                            
                             );
                         
-                       
+                    
                     })}
                 </>      
             );
@@ -246,4 +247,15 @@ function DetalleColaborador(props){
     );
 }
 
-export default ListarColaboradores;
+class AppSalary extends React.Component{
+  render(){
+    return (
+      <div>
+        <ListarColaboradores></ListarColaboradores>        
+        <ListarColaboradores></ListarColaboradores>     
+      </div>
+    )
+  }
+}
+
+export default AppSalary;
