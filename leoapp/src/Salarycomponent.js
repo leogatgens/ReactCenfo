@@ -31,7 +31,7 @@ function calculaRentaNivel1(salarioColones){
 }
 function calculaRentaNivel2(salarioColones){
     let resultado = salarioColones - TopeInferiorNivel2;
-    console.log(resultado);
+    
     if(resultado > 0){
        return resultado * 0.15;
     }
