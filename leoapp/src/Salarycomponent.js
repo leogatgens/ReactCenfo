@@ -5,7 +5,7 @@ const TopeInferiorSuperiorNivel1 = 1199000;
 const TopeInferiorNivel2 = 1199000;
 
 
-function obtieneTipoDeCambio(){
+ function obtieneTipoDeCambio(){
     return 584;
 }
 
@@ -56,23 +56,78 @@ function flujoRentaPorColaboradorActivo(datos){
     });
 
     return nuevosSalarios; 
-}
+} 
 
-function ListarColaboradores(props){  
-   let colaboradoresActivos = flujoRentaPorColaboradorActivo(props.data);
-    return (
-        <>
-             <h1>Renta colaboradores activos 2018</h1>
-             {colaboradoresActivos.map((usuario,i) => {
-                 return (
+class ListarColaboradores extends React.Component  {
+    constructor(props){
+        super(props);
+        this.state = {     
+            cambiandoEstado : true,     
+          colaboradoresActivos :   flujoRentaPorColaboradorActivo(props.data)
+        };
+       this.handleClick = this.handleClick.bind(this);
+      }
 
-                     <DetalleColaborador className="" key={i} nombre = {usuario.nombre} 
-                     salarioEnColones = {usuario.Salario}  
-                     Renta = {usuario.Renta} />
-                 );
-             })}
-        </>      
-    );
+
+    render(){
+            return (
+                <>
+                    <h1>Renta colaboradores activos 2018</h1>
+                    <button onClick={this.handleClick}> Calcular Renta</button>
+                    {this.state.colaboradoresActivos.map((usuario,i) => {
+                        return (
+
+                            <DetalleColaborador className="" key={i} nombre = {usuario.nombre} 
+                            salarioEnColones = {usuario.Salario}  
+                            Renta = {usuario.Renta} />
+                        );
+                    })}
+                </>      
+            );
+     }
+     handleClick(){
+        this.setState({
+            colaboradoresActivos : flujoRentaPorColaboradorActivo([
+                {
+                  "_id": "5bfc88f8bc18d43d261b9064",
+                  "isActive": true,
+                  "salaryInDolars": "1754.91",
+                  "name": {
+                    "first": "Aimee",
+                    "last": "Craft"
+                  }
+                },               
+                {
+                  "_id": "5bfc88f80d5ca4126f7cf6c1",
+                  "isActive": true,
+                  "salaryInDolars": "1997.30",
+                  "name": {
+                    "first": "Autumn",
+                    "last": "Holland"
+                  }
+                },
+                {
+                  "_id": "5bfc88f838da94457ebf3901",
+                  "isActive": true,
+                  "salaryInDolars": "2571.57",
+                  "name": {
+                    "first": "Olive",
+                    "last": "Stokes"
+                  }
+                },
+                {
+                  "_id": "5bfc88f84635a89a5420c2d9",
+                  "isActive": true,
+                  "salaryInDolars": "1169.31",
+                  "name": {
+                    "first": "Colleen",
+                    "last": "Zamora"
+                  }
+                }
+              ])
+        }); 
+    }   
+       
 }
 function DetalleColaborador(props){
     const {nombre,salarioEnColones,Renta}  = props;  
