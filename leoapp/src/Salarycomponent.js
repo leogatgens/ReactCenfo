@@ -39,10 +39,10 @@ function calculaRentaNivel2(salarioColones){
     return 0;
 }
 
-function flujoRentaPorColaboradorActivo(datos,estadoColaborador){  
+function flujoRentaPorColaborador(props,estadoColaborador){  
     const TipoCambioVenta = obtieneTipoDeCambio();
-
-    let colaboradoresActivos = datos.filter(colaborador =>  colaborador.isActive  === estadoColaborador);   
+    
+    let colaboradoresActivos = props.data.filter(colaborador =>  colaborador.isActive  === estadoColaborador);   
 
     let nuevosSalarios =  colaboradoresActivos.map(colaborador => {
         let nuevoColabordor = {};
@@ -62,19 +62,17 @@ class ListarColaboradores extends React.Component  {
     constructor(props){
         super(props);
         this.state = {     
-            estadoColaborador : true,     
-            colaboradoresActivos :   []
+            usuariopresionoboton : true,                             
+            ListaColaboradores : []
         };
        this.handleClick = this.handleClick.bind(this);
       }
-
-
     render(){
             return (
                 <>
                     <h1>Renta colaboradores activos 2018</h1>
-                    <button onClick={this.handleClick}> { (this.state.estadoColaborador) ? "Mostrar renta activos" : "Mostrar renta inactivos"}</button>
-                    { this.state.colaboradoresActivos.map((usuario,i) => {                    
+                    <button onClick={this.handleClick}> { (this.state.usuariopresionoboton) ? "Mostrar renta activos" : "Mostrar renta inactivos"}</button>
+                    { this.state.ListaColaboradores.map((usuario,i) => {                    
                             return (
 
                                 <DetalleColaborador className="" key={i} nombre = {usuario.nombre} 
@@ -89,149 +87,35 @@ class ListarColaboradores extends React.Component  {
             );
      }
      handleClick(){
-
-        if( this.state.estadoColaborador){
+    
+        if( this.state.usuariopresionoboton){
             this.setState({
-                estadoColaborador : false,
-                         colaboradoresActivos :flujoRentaPorColaboradorActivo( [
-                            {
-                              "_id": "5bfc88f8bc18d43d261b9064",
-                              "isActive": false,
-                              "salaryInDolars": "1754.91",
-                              "name": {
-                                "first": "Aimee",
-                                "last": "Craft"
-                              }
-                            },
-                            {
-                              "_id": "5bfc88f8a0db24557c54ea16",
-                              "isActive": false,
-                              "salaryInDolars": "1083.28",
-                              "name": {
-                                "first": "Lacey",
-                                "last": "Bryan"
-                              }
-                            },
-                            {
-                              "_id": "5bfc88f82517f008113ef56a",
-                              "isActive": true,
-                              "salaryInDolars": "3540.36",
-                              "name": {
-                                "first": "Andrews",
-                                "last": "Morgan"
-                              }
-                            },
-                            {
-                              "_id": "5bfc88f8c9f862a08af24446",
-                              "isActive": false,
-                              "salaryInDolars": "3393.95",
-                              "name": {
-                                "first": "Hood",
-                                "last": "Mcbride"
-                              }
-                            },
-                            {
-                              "_id": "5bfc88f80d5ca4126f7cf6c1",
-                              "isActive": true,
-                              "salaryInDolars": "1997.30",
-                              "name": {
-                                "first": "Autumn",
-                                "last": "Holland"
-                              }
-                            },
-                            {
-                              "_id": "5bfc88f838da94457ebf3901",
-                              "isActive": false,
-                              "salaryInDolars": "2571.57",
-                              "name": {
-                                "first": "Olive",
-                                "last": "Stokes"
-                              }
-                            },
-                            {
-                              "_id": "5bfc88f84635a89a5420c2d9",
-                              "isActive": false,
-                              "salaryInDolars": "1169.31",
-                              "name": {
-                                "first": "Colleen",
-                                "last": "Zamora"
-                              }
-                            }
-                          ],this.state.estadoColaborador)
+              usuariopresionoboton : false,
+              ListaColaboradores: flujoRentaPorColaborador(this.props.data,this.state.usuariopresionoboton)
+               
             })
         } else {
             this.setState({                      
-                estadoColaborador : true   ,
-                colaboradoresActivos : flujoRentaPorColaboradorActivo([
-                    {
-                      "_id": "5bfc88f8bc18d43d261b9064",
-                      "isActive": false,
-                      "salaryInDolars": "1754.91",
-                      "name": {
-                        "first": "Aimee",
-                        "last": "Craft"
-                      }
-                    },
-                    {
-                      "_id": "5bfc88f8a0db24557c54ea16",
-                      "isActive": false,
-                      "salaryInDolars": "1083.28",
-                      "name": {
-                        "first": "Lacey",
-                        "last": "Bryan"
-                      }
-                    },
-                    {
-                      "_id": "5bfc88f82517f008113ef56a",
-                      "isActive": true,
-                      "salaryInDolars": "3540.36",
-                      "name": {
-                        "first": "Andrews",
-                        "last": "Morgan"
-                      }
-                    },
-                    {
-                      "_id": "5bfc88f8c9f862a08af24446",
-                      "isActive": false,
-                      "salaryInDolars": "3393.95",
-                      "name": {
-                        "first": "Hood",
-                        "last": "Mcbride"
-                      }
-                    },
-                    {
-                      "_id": "5bfc88f80d5ca4126f7cf6c1",
-                      "isActive": true,
-                      "salaryInDolars": "1997.30",
-                      "name": {
-                        "first": "Autumn",
-                        "last": "Holland"
-                      }
-                    },
-                    {
-                      "_id": "5bfc88f838da94457ebf3901",
-                      "isActive": false,
-                      "salaryInDolars": "2571.57",
-                      "name": {
-                        "first": "Olive",
-                        "last": "Stokes"
-                      }
-                    },
-                    {
-                      "_id": "5bfc88f84635a89a5420c2d9",
-                      "isActive": false,
-                      "salaryInDolars": "1169.31",
-                      "name": {
-                        "first": "Colleen",
-                        "last": "Zamora"
-                      }
-                    }
-                  ],this.state.estadoColaborador)
+              usuariopresionoboton : true ,
+              ListaColaboradores: flujoRentaPorColaborador(this.props.data,this.state.usuariopresionoboton)  
+              
             })
         }
        
     }   
-       
+      
+     componentDidMount() {
+      fetch("https://dog.ceo/api/breeds/list/all")
+        .then(res => res.json())
+        .then(
+          (result) => {          
+             this.setState({              
+             //ListaColaboradores: flujoRentaPorColaborador(this.props.data,this.state.usuariopresionoboton)
+            });
+          }
+      
+        )
+    } 
 }
 function DetalleColaborador(props){
     
@@ -248,11 +132,14 @@ function DetalleColaborador(props){
 }
 
 class AppSalary extends React.Component{
+  constructor(props){
+    super(props);
+  }
   render(){
     return (
       <div>
-        <ListarColaboradores></ListarColaboradores>        
-        <ListarColaboradores></ListarColaboradores>     
+        <ListarColaboradores data = {this.props}></ListarColaboradores>        
+        <ListarColaboradores data = {this.props}></ListarColaboradores>     
       </div>
     )
   }

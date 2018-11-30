@@ -170,9 +170,75 @@ if( this.state.mostrar){
 
 ReactDOM.render(<Clock usuario = 'Leo' /> , document.getElementById('root')); */
 
+const colaboradores = [
+  {
+    "_id": "5bfc88f8bc18d43d261b9064",
+    "isActive": false,
+    "salaryInDolars": "1754.91",
+    "name": {
+      "first": "Aimee",
+      "last": "Craft"
+    }
+  },
+  {
+    "_id": "5bfc88f8a0db24557c54ea16",
+    "isActive": false,
+    "salaryInDolars": "1083.28",
+    "name": {
+      "first": "Lacey",
+      "last": "Bryan"
+    }
+  },
+  {
+    "_id": "5bfc88f82517f008113ef56a",
+    "isActive": true,
+    "salaryInDolars": "3540.36",
+    "name": {
+      "first": "Andrews",
+      "last": "Morgan"
+    }
+  },
+  {
+    "_id": "5bfc88f8c9f862a08af24446",
+    "isActive": false,
+    "salaryInDolars": "3393.95",
+    "name": {
+      "first": "Hood",
+      "last": "Mcbride"
+    }
+  },
+  {
+    "_id": "5bfc88f80d5ca4126f7cf6c1",
+    "isActive": true,
+    "salaryInDolars": "1997.30",
+    "name": {
+      "first": "Autumn",
+      "last": "Holland"
+    }
+  },
+  {
+    "_id": "5bfc88f838da94457ebf3901",
+    "isActive": false,
+    "salaryInDolars": "2571.57",
+    "name": {
+      "first": "Olive",
+      "last": "Stokes"
+    }
+  },
+  {
+    "_id": "5bfc88f84635a89a5420c2d9",
+    "isActive": false,
+    "salaryInDolars": "1169.31",
+    "name": {
+      "first": "Colleen",
+      "last": "Zamora"
+    }
+  }
+];
+
 
   
-ReactDOM.render(<Salary /> , document.getElementById('root'));
+ReactDOM.render(<Salary data = {colaboradores}/> , document.getElementById('root'));
 
 
 // If you want your app to work offline and load faster, you can change
