@@ -109,11 +109,18 @@ class ListarColaboradores extends React.Component  {
         .then(res => res.json())
         .then(
           (result) => {          
-             this.setState({              
-             //ListaColaboradores: flujoRentaPorColaborador(this.props.data,this.state.usuariopresionoboton)
+             this.setState({  
+                cargado : true,
+                 elementos : result     
             });
-          }
+          },
       
+          error => {
+              this.state({
+                  cargado : true,
+                  error
+              })
+          }
         )
     } 
 }
