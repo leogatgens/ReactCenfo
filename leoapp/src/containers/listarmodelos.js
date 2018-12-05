@@ -18,7 +18,7 @@ class ListaModelosDeAutos extends React.Component {
       }
 
     componentDidMount() {
-        let rutaAPI = 'https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformakeyear/make/' + this.props.filtro + '/modelyear/2015?format=json';
+        let rutaAPI = 'https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformakeyear/make/' + this.props.filtro.trim() + '/modelyear/2015?format=json';
         console.log(rutaAPI);
         fetch(rutaAPI)
           .then(res => res.json())
