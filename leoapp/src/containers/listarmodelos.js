@@ -18,8 +18,9 @@ class ListaModelosDeAutos extends React.Component {
       }
 
     componentDidMount() {
+      
         let rutaAPI = 'https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformakeyear/make/' + this.props.filtro.trim() + '/modelyear/2015?format=json';
-        console.log(rutaAPI);
+      
         fetch(rutaAPI)
           .then(res => res.json())
           .then(
@@ -37,6 +38,8 @@ class ListaModelosDeAutos extends React.Component {
                 })
             }
           )
+        
+        
       } 
     render(){
 
@@ -45,14 +48,14 @@ class ListaModelosDeAutos extends React.Component {
         if(error){     
             return <div>Error : {error.message}</div>;
         }else if(!cargado){
-            return <div>Cargando....</div>;
+            return <PantallaCargando />;
         }else {      
                   const texto = "Modelos por marca: " + autosPorModeloyAnno.SearchCriteria;
                     return( 
                         <div>
                         <TituloBienvenida label = {texto}></TituloBienvenida> 
                     
-                        {autosPorModeloyAnno.Count > 0 ? <ListadorDeModelos autos = {autosPorModeloyAnno} /> :<PantallaCargando /> }  
+                        {autosPorModeloyAnno.Count > 0 ? <ListadorDeModelos autos = {autosPorModeloyAnno} /> : <PantallaCargando /> }  
                         </div>
                     );
                 }                

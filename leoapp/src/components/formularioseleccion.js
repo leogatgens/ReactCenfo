@@ -15,9 +15,9 @@ class TextBoxEspejo extends React.Component  {
         super(props);  
     }
 
-    handleChange =(e) => {
-      
-         this.props.onTemperatureChange(e.target.value);
+    handleChange =(event) => {
+      console.log(event);
+         this.props.onTemperatureChange(event.target.value);
         
     }
 
@@ -41,13 +41,15 @@ class FormularioBusquedaPorMarca extends React.Component {
         this.state = {
             value : "",
             texto : "",
-            fruta : ""             
+            fruta : "",
+            filtro : ""
+
         };           
 }
 
     handleChange = (event) =>{
-        console.log("Evento handleChange");
-     
+       
+     console.log(event);
         this.setState({
             value : event
         });    
@@ -62,8 +64,8 @@ class FormularioBusquedaPorMarca extends React.Component {
     }
 
     handleSubmit = (event) =>{
-   
-        alert("Hola loco " + this.state.value.toString() +  this.state.texto.toString() +  this.state.fruta.value.toString() );
+        console.log("Evento handleChange");
+        this.setState({filtro : this.state.value}); 
         event.preventDefault();
     }
 
