@@ -14,7 +14,7 @@ const TituloBienvenida = (props) => {
 }
     
 const ListadorDeModelos = (props) => {
-    console.log(props.Results);
+ 
         return( 
             <ul>
             {props.autos.Results.map(item => (
@@ -30,7 +30,7 @@ const ListadorDeModelos = (props) => {
 }
 
 const ListadorDeMarcas = (props) => {
-    console.log(props.Results);
+ 
         return( 
             <ul>
             {props.autos.Results.map((item,i) => (

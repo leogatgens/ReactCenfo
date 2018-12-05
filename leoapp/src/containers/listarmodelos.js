@@ -2,18 +2,25 @@ import React from 'react';
 import {PantallaCargando,TituloBienvenida,ListadorDeModelos} from '../components/controlesautos';
 
 
+
 class ListaModelosDeAutos extends React.Component {
+   
     constructor(props){
         super(props);
+        console.log(props);
         this.state = { 
             cargado : true,                                   
             autosPorModeloyAnno : {},
             error : ""
+            
         };
+
       }
 
     componentDidMount() {
-        fetch("https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformakeyear/make/honda/modelyear/2015?format=json")
+        let rutaAPI = 'https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformakeyear/make/' + this.props.filtro + '/modelyear/2015?format=json';
+        console.log(rutaAPI);
+        fetch(rutaAPI)
           .then(res => res.json())
           .then(
             (result) => {          
@@ -34,7 +41,7 @@ class ListaModelosDeAutos extends React.Component {
     render(){
 
         const {error,autosPorModeloyAnno,cargado} = this.state;
-        console.log(autosPorModeloyAnno);
+   
         if(error){     
             return <div>Error : {error.message}</div>;
         }else if(!cargado){
@@ -48,13 +55,8 @@ class ListaModelosDeAutos extends React.Component {
                         {autosPorModeloyAnno.Count > 0 ? <ListadorDeModelos autos = {autosPorModeloyAnno} /> :<PantallaCargando /> }  
                         </div>
                     );
-                }
-                
+                }                
      }
-    
    
-     
 }
-
-
 export {ListaModelosDeAutos};

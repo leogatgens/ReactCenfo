@@ -44,7 +44,7 @@ class FormularioBusquedaPorMarca extends React.Component {
 }
 
     handleChange = (event) =>{
-        console.log(event);
+        console.log("Evento handleChange");
         this.setState({value : event});    
 
     }
@@ -52,7 +52,6 @@ class FormularioBusquedaPorMarca extends React.Component {
 
     handleChangeSelect = (prueba) => {
      
-        console.log(prueba);
        this.setState({fruta : prueba});    
 
     }
@@ -78,7 +77,7 @@ class FormularioBusquedaPorMarca extends React.Component {
                 </label>              
                 </Wrapper>                        
                 <TomatoButton type="submit">Submit</TomatoButton>
-                <ListaModelosDeAutos></ListaModelosDeAutos>    
+               {valor !== "" ? <ListaModelosDeAutos filtro = {valor} /> : <h1>digite un filtro</h1>} 
             </form>
 
         );
