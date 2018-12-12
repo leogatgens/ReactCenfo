@@ -7,6 +7,21 @@ import {ListaMarcasDeAutos} from './containers/listarmarcas';
 import {FormularioBusquedaPorMarca} from './components/formularioseleccion';
 import { Route, Link, BrowserRouter as Router,Switch } from 'react-router-dom'
 import {Notfound} from './components/controlesautos';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
+
+  import Example from './components/carousel';
 
 
 class Main extends React.Component{
@@ -16,30 +31,42 @@ class Main extends React.Component{
     render(){
       return (
         <Router>
+       
+     
           <div>
-            <ul>
-              <li>
-                <Link exact activeClassName="active" to="/">
+          <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">Conoce sobre autos</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+     
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink> <Link exact activeClassName="active" to="/">
                   Home
-                </Link>
-              </li>
-              <li>
-                <Link actvieClassName="active" to="/marcas">
+                </Link></NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink >    <Link actvieClassName="active" to="/marcas">
                   Marcas de autos
-                </Link>
-              </li>
-              <li>
-                <Link actvieClassName="active" to="/modelos">
+                </Link></NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink >   <Link actvieClassName="active" to="/modelos">
                   Modelos por marca
                 </Link>
-              </li>
-            </ul>
+                </NavLink>
+              </NavItem>
+              
+            </Nav>
+      
+          </Navbar>
+        
             <hr />
             <Switch>
-              <Route exact path="/" component={Notfound} /> 
+               
+              <Route exact path="/" component={Example} /> 
               <Route exact path="/marcas" component={ListaMarcasDeAutos} /> 
              <Route exact path="/modelos" component={FormularioBusquedaPorMarca} />  
-               
+             <Route component={Notfound}/>
             </Switch>
           </div>
     </Router>

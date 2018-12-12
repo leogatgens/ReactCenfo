@@ -3,6 +3,7 @@ import Select from 'react-select';
 import {ListaModelosDeAutos} from '../containers/listarmodelos';
 import {Input} from '../components/estiloshtml';
 import {TomatoButton,Wrapper} from '../estilos';
+import { EventEmitter } from 'events';
 
 let options = [
     { value: '2015', label: '2015' },
@@ -12,22 +13,35 @@ let options = [
 
 class TextBoxEspejo extends React.Component  {
     constructor(props){
-        super(props);  
-    }
+        super(props); 
 
-    handleChange =(event) => {
-      console.log(event);
-         this.props.onTemperatureChange(event.target.value);
+        this.state = {
+            filtro :""
+        }
+
         
     }
 
+    handleChange =(event) => {
+    
+        this.setState({      
+                  filtro : event.target.value
+        });
+        
+    }
+
+    handleClick = (event) => {
+        console.log("handleClick");
+        this.props.onTemperatureChange(this.state.filtro);
+    }
     render(){
                 return (
                     <>
                     <label>
                     Marca : 
-                        <Input type="text" value={this.props.valorTexto} onChange ={this.handleChange} ></Input>
+                        <Input type="text" placeholder="Escriba la marca de automovil" value={this.state.filtro} onChange ={this.handleChange} ></Input>
                     </label>
+                    <TomatoButton onClick={this.handleClick}>Consultar</TomatoButton>
                     </>
             );
     }
@@ -39,53 +53,34 @@ class FormularioBusquedaPorMarca extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            value : "",
-            texto : "",
-            fruta : "",
-            filtro : ""
+            value : "",            
+            filtro : "",
+            listadeMarcas : {},
+            error : "",
+            cargado : true
 
         };           
 }
 
-    handleChange = (event) =>{
-       
-     console.log(event);
+    handleChange = (event) =>{    
         this.setState({
             value : event
-        });    
-        
+        });   
+       
     }
  
-
-    handleChangeSelect = (prueba) => {
-     
-       this.setState({fruta : prueba});    
-
-    }
-
-    handleSubmit = (event) =>{
-        console.log("Evento handleChange");
-        this.setState({filtro : this.state.value}); 
-        event.preventDefault();
-    }
-
     render(){
        const valor= this.state.value;
-  
-
+        console.log(this.state.listadeMarcas);
+        console.log("Filtro : " + valor);
         return (
-            <form onSubmit={this.handleSubmit} >
+            <div >
              <Wrapper>
-                <TextBoxEspejo valorTexto = {valor} onTemperatureChange={this.handleChange}  ></TextBoxEspejo>
-              
-                <label>
-                Año : 
-                <Select options={options} value = {this.state.fruta}    onChange={this.handleChangeSelect}/>  
-                </label>              
-                </Wrapper>                        
-                <TomatoButton type="submit">Submit</TomatoButton>
-               {valor !== "" ? <ListaModelosDeAutos filtro = {valor} /> : <h1>digite un filtro</h1>} 
-            </form>
+                <TextBoxEspejo valorTexto = {valor} onTemperatureChange={this.handleChange}  ></TextBoxEspejo>    
+            </Wrapper>                     
+               
+            {valor !== "" ? <ListaModelosDeAutos filtro = {valor} /> : <h1>digite un filtro</h1>} 
+            </div>
 
         );
     }

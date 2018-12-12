@@ -10,7 +10,28 @@ class ListaMarcasDeAutos extends React.Component {
             autosPorModeloyAnno : {},
             error : ""
         };
+
+      
       }
+
+   
+      componentWillUnmount(){
+       
+        console.log("componentWillUnmount ListaMarcasDeAutos");
+      }
+    
+      componentWillUpdate(){
+        console.log("componentDidUpdate ListaMarcasDeAutos");
+        
+        
+      }
+
+      componentDidUpdate(){
+        console.log("componentWillUpdate ListaMarcasDeAutos");
+        
+       
+      }
+
 
     componentDidMount() {
         fetch("https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json")
@@ -30,6 +51,7 @@ class ListaMarcasDeAutos extends React.Component {
                 })
             }
           )
+      
       } 
     render(){
 

@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        "node_modules{,/**}"
+    ],
+    "appService.deploySubpath": "",
+    "appService.defaultWebAppToDeploy": "/subscriptions/6839a1ad-1c62-479f-80f1-af657828db3a/resourceGroups/appsvc_rg_linux_centralus/providers/Microsoft.Web/sites/YouTrip"
+}
