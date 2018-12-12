@@ -22,6 +22,7 @@ import {
   DropdownItem } from 'reactstrap';
 
   import Example from './components/carousel';
+  import {ListaViajesDelUsuario} from './containers/listartrips';
 
 
 class Main extends React.Component{
@@ -40,7 +41,7 @@ class Main extends React.Component{
      
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink> <Link exact activeClassName="active" to="/">
+                <NavLink> <Link activeClassName="active" to="/">
                   Home
                 </Link></NavLink>
               </NavItem>
@@ -55,6 +56,13 @@ class Main extends React.Component{
                 </Link>
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink >   
+                  <Link actvieClassName="active" to="/misviajes">
+                  Mis viajes
+                </Link>
+                </NavLink>
+              </NavItem>
               
             </Nav>
       
@@ -66,6 +74,7 @@ class Main extends React.Component{
               <Route exact path="/" component={Example} /> 
               <Route exact path="/marcas" component={ListaMarcasDeAutos} /> 
              <Route exact path="/modelos" component={FormularioBusquedaPorMarca} />  
+             <Route exact path="/misviajes" component={ListaViajesDelUsuario} />  
              <Route component={Notfound}/>
             </Switch>
           </div>
