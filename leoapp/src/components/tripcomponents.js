@@ -8,7 +8,7 @@ const ListadorDeTrips = (props) => {
             {props.autos.map((item,i) => (
                 
                 <li key= {item.id} >
-                        {item.pais} 
+                       {i} : {item.pais} 
                 </li>
 
             ))}
