@@ -2,7 +2,7 @@
   "name": "leoapp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://youtrip.azurewebsites.net/",
+  "homepage": "https://yourtrips.azurewebsites.net/",
   "dependencies": {
     "bootstrap": "^4.1.3",
     "react": "^16.6.3",

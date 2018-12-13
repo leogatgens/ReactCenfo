@@ -30,11 +30,15 @@ class ListaViajesDelUsuario extends React.Component {
 
 
     componentDidMount() {
-        fetch("https://tripsapi20181211043716.azurewebsites.net/api/trips", {mode: 'cors'})
-          .then(res => res.json())
+        fetch("https://tripsapi20181211043716.azurewebsites.net/api/trips")          
+          .then(res => {
+              console.log(res);
+             return res.json()
+            }
+          )
           .then(              
             (result) => {       
-           
+               console.log(result);
                this.setState({  
                   cargado : true,
                   autosPorModeloyAnno :result
