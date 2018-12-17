@@ -5,10 +5,13 @@ const ListadorDeTrips = (props) => {
  console.log(props);
         return( 
             <ul>
-            {props.autos.map((item,i) => (
+            {props.trips.map((item) => (
                 
-                <li key= {item.id} >
-                       {i} : {item.pais} 
+                <li key= {item.idPais} >
+                      IdPais : {item.idPais}  
+                      --  FechaDeVisita :  {item.fechaDeLaVisita}  
+                      -- Codigo País : {item.codigoPais}
+                      -- Pais : {item.pais}
                 </li>
 
             ))}

@@ -62,7 +62,7 @@ class ListaViajesDelUsuario extends React.Component {
                         <div>
                         <TituloBienvenida  label="Sus viajes por el mundo" ></TituloBienvenida> 
                     
-                        {autosPorModeloyAnno.length > 0 ? <ListadorDeTrips autos = {autosPorModeloyAnno} /> :<PantallaCargando /> }  
+                        {autosPorModeloyAnno.length > 0 ? <ListadorDeTrips trips = {autosPorModeloyAnno} /> :<PantallaCargando /> }  
                         </div>
                     );
                 }
