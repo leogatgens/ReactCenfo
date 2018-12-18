@@ -8,21 +8,25 @@ const ListadorDeTrips = (props) => {
         return( 
             <Table bordered>
                 <thead>
+                <tr>
                     <th>#</th>
                     <th>País</th>                     
-                    <th>Año de la visita</th>               
+                    <th>Año de la visita</th>   
+                </tr>            
                 </thead>
+                <tbody>
             {props.trips.map((item) => (              
-                    <tbody>
-                        <tr>
+                  
+                        <tr key= {item.idPais}>
                             <th scope="row">{item.idPais}</th>
                             <td>{item.pais}</td>                         
                             <td>{item.annoDeLaVisita}</td>
-                            {console.log(typeof  item.annoDeLaVisita)}
+                      
                         </tr>
                         
-                    </tbody>
+                   
             ))}
+             </tbody>
             </Table>
         );
     

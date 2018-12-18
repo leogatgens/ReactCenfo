@@ -17,17 +17,17 @@ class ListaMarcasDeAutos extends React.Component {
    
       componentWillUnmount(){
        
-        console.log("componentWillUnmount ListaMarcasDeAutos");
+
       }
     
       componentWillUpdate(){
-        console.log("componentDidUpdate ListaMarcasDeAutos");
+     
         
         
       }
 
       componentDidUpdate(){
-        console.log("componentWillUpdate ListaMarcasDeAutos");
+  
         
        
       }
@@ -56,7 +56,7 @@ class ListaMarcasDeAutos extends React.Component {
     render(){
 
         const {error,autosPorModeloyAnno,cargado} = this.state;
-        console.log(autosPorModeloyAnno);
+       
         if(error){     
             return <div>Error : {error.message}</div>;
         }else if(!cargado){

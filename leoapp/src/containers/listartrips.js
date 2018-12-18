@@ -17,15 +17,15 @@ class ListaViajesDelUsuario extends React.Component {
 
    
       componentWillUnmount(){       
-        console.log("componentWillUnmount ListaViajesDelUsuario");
+     
       }
     
       componentWillUpdate(){
-        console.log("componentDidUpdate ListaViajesDelUsuario");
+      
       }
 
       componentDidUpdate(){
-        console.log("componentWillUpdate ListaViajesDelUsuario");       
+           
       }
 
 
@@ -48,7 +48,7 @@ class ListaViajesDelUsuario extends React.Component {
     render(){
 
         const {error,misViajes,cargado} = this.state;
-        console.log(misViajes);
+
         if(error){     
             return <div>Error : {error.message}</div>;
         }else if(!cargado){
