@@ -12,24 +12,14 @@ class ListaMarcasDeAutos extends React.Component {
         };
 
       
-      }
-
-   
-      componentWillUnmount(){
-       
-
+      }   
+      componentWillUnmount(){      
       }
     
-      componentWillUpdate(){
-     
-        
-        
+      componentWillUpdate(){                    
       }
 
-      componentDidUpdate(){
-  
-        
-       
+      componentDidUpdate(){        
       }
 
 
@@ -61,21 +51,16 @@ class ListaMarcasDeAutos extends React.Component {
             return <div>Error : {error.message}</div>;
         }else if(!cargado){
             return <div>Cargando....</div>;
-        }else {      
-            
-                    return( 
-                        <div>
+        }else {    
+            return( 
+                    <div>
                         <TituloBienvenida  label="Frabricantes de automoviles" ></TituloBienvenida> 
                     
                         {autosPorModeloyAnno.Count > 0 ? <ListadorDeMarcas autos = {autosPorModeloyAnno} /> :<PantallaCargando /> }  
-                        </div>
+                    </div>
                     );
-                }
-                
-     }
-    
-   
-     
+                }                
+     }    
 }
 
 
