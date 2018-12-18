@@ -1,25 +1,17 @@
 import React from 'react';
-import Select from 'react-select';
+
 import {ListaModelosDeAutos} from '../containers/listarmodelos';
 import {Input} from '../components/estiloshtml';
 import {TomatoButton,Wrapper} from '../estilos';
-import { EventEmitter } from 'events';
 
-let options = [
-    { value: '2015', label: '2015' },
-    { value: '2014', label: '2014' },
-    { value: '2013', label: '2013' }
-  ];
+
 
 class TextBoxEspejo extends React.Component  {
     constructor(props){
         super(props); 
-
         this.state = {
             filtro :""
-        }
-
-        
+        }        
     }
 
     handleChange =(event) => {
@@ -70,9 +62,7 @@ class FormularioBusquedaPorMarca extends React.Component {
     }
  
     render(){
-       const valor= this.state.value;
-        console.log(this.state.listadeMarcas);
-        console.log("Filtro : " + valor);
+       const valor= this.state.value;  
         return (
             <div >
              <Wrapper>

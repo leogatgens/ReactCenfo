@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
+
 import './index.css';
 
 
@@ -8,18 +8,14 @@ import {FormularioBusquedaPorMarca} from './components/formularioseleccion';
 import { Route, Link, BrowserRouter as Router,Switch } from 'react-router-dom'
 import {Notfound} from './components/controlesautos';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  Collapse,
+import { 
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  NavLink
+} from 'reactstrap';
 
   import Example from './components/carousel';
   import {ListaViajesDelUsuario} from './containers/listartrips';

@@ -8,7 +8,7 @@ class ListaViajesDelUsuario extends React.Component {
         super(props);
         this.state = { 
             cargado : true,                                   
-            autosPorModeloyAnno : {},
+            misViajes : {},
             error : ""
         };
 
@@ -17,41 +17,38 @@ class ListaViajesDelUsuario extends React.Component {
 
    
       componentWillUnmount(){       
-        console.log("componentWillUnmount ListaMarcasDeAutos");
+        console.log("componentWillUnmount ListaViajesDelUsuario");
       }
     
       componentWillUpdate(){
-        console.log("componentDidUpdate ListaMarcasDeAutos");
+        console.log("componentDidUpdate ListaViajesDelUsuario");
       }
 
       componentDidUpdate(){
-        console.log("componentWillUpdate ListaMarcasDeAutos");       
+        console.log("componentWillUpdate ListaViajesDelUsuario");       
       }
 
 
     componentDidMount() {
         fetch("https://tripsapi20181211043716.azurewebsites.net/api/trips")          
-          .then(res => {
-              console.log(res);
+          .then(res => {      
              return res.json()
             }
           )
           .then(              
-            (result) => {       
-               console.log(result);
+            (result) => {     
                this.setState({  
                   cargado : true,
-                  autosPorModeloyAnno :result
+                  misViajes :result
               });
-            }
-            
-          )  .catch(error => this.setState({ error, cargado: false }));
+            }            
+          ).catch(error => this.setState({ error, cargado: false }));
       
       } 
     render(){
 
-        const {error,autosPorModeloyAnno,cargado} = this.state;
-     
+        const {error,misViajes,cargado} = this.state;
+        console.log(misViajes);
         if(error){     
             return <div>Error : {error.message}</div>;
         }else if(!cargado){
@@ -62,7 +59,7 @@ class ListaViajesDelUsuario extends React.Component {
                         <div>
                         <TituloBienvenida  label="Sus viajes por el mundo" ></TituloBienvenida> 
                     
-                        {autosPorModeloyAnno.length > 0 ? <ListadorDeTrips trips = {autosPorModeloyAnno} /> :<PantallaCargando /> }  
+                        {misViajes.length > 0 ? <ListadorDeTrips trips = {misViajes} /> :<PantallaCargando /> }  
                         </div>
                     );
                 }

@@ -1,21 +1,29 @@
 import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Table } from 'reactstrap';
 
 
 const ListadorDeTrips = (props) => {
- console.log(props);
-        return( 
-            <ul>
-            {props.trips.map((item) => (
-                
-                <li key= {item.idPais} >
-                      IdPais : {item.idPais}  
-                      --  FechaDeVisita :  {item.fechaDeLaVisita}  
-                      -- Codigo País : {item.codigoPais}
-                      -- Pais : {item.pais}
-                </li>
 
+        return( 
+            <Table bordered>
+                <thead>
+                    <th>#</th>
+                    <th>País</th>                     
+                    <th>Año de la visita</th>               
+                </thead>
+            {props.trips.map((item) => (              
+                    <tbody>
+                        <tr>
+                            <th scope="row">{item.idPais}</th>
+                            <td>{item.pais}</td>                         
+                            <td>{item.annoDeLaVisita}</td>
+                            {console.log(typeof  item.annoDeLaVisita)}
+                        </tr>
+                        
+                    </tbody>
             ))}
-            </ul>
+            </Table>
         );
     
 }
