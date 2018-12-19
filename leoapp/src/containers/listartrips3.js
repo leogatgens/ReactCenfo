@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { List, Avatar, Button, Skeleton, } from 'antd';
-import '../listas.css';
+
 import reqwest from 'reqwest';
 
 const count = 3;
