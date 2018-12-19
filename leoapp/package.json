@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://yourtrips.azurewebsites.net/",
   "dependencies": {
+    "antd": "^3.11.2",
     "bootstrap": "^4.1.3",
     "react": "^16.6.3",
     "react-bootstrap": "^0.32.4",
@@ -12,6 +13,7 @@
     "react-scripts": "2.1.1",
     "react-select": "^2.1.2",
     "reactstrap": "^6.5.0",
+    "reqwest": "^2.0.5",
     "styled-components": "^4.1.2"
   },
   "scripts": {

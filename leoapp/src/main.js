@@ -7,8 +7,10 @@ import {Notfound} from './components/controlesautos';
 
 import Example from './components/carousel';
 import {ListaViajesDelUsuario} from './containers/listartrips';
+import {LoadMoreList} from './containers/listartrips3';
 
 import {MenuAPP} from './components/menu';
+import {Formularionewtrip} from './components/formularionewtrip';
 
 const Main = (props) =>{
     
@@ -19,9 +21,8 @@ const Main = (props) =>{
           <MenuAPP/>
           <Switch>               
             <Route exact path="/" component={Example} /> 
-            <Route exact path="/marcas" component={ListaMarcasDeAutos} /> 
-            <Route exact path="/modelos" component={FormularioBusquedaPorMarca} />  
-            <Route exact path="/misviajes" component={ListaViajesDelUsuario} />  
+            <Route exact path="/marcas" component={Formularionewtrip} />     
+            <Route exact path="/misviajes" component={LoadMoreList} />  
             <Route component={Notfound}/>
           </Switch>
         </div>
