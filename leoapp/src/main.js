@@ -7,7 +7,7 @@ import {Notfound} from './components/controlesautos';
 
 import Example from './components/carousel';
 import {ListaViajesDelUsuario} from './containers/listartrips';
-import {LoadMoreList} from './containers/listartrips3';
+import {LoadMoreList} from './containers/listartrips1';
 
 import {MenuAPP} from './components/menu';
 import {Formularionewtrip} from './components/formularionewtrip';
