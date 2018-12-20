@@ -10,7 +10,7 @@ let options = [
 class TextBoxEspejo extends React.Component  {
     constructor(props){
         super(props);
-        console.log(props);         
+             
        
 }
 
@@ -59,7 +59,7 @@ class AppElevando extends React.Component {
     }
     handleChangeSelect = (prueba) => {
      
-        console.log(prueba);
+      
        this.setState({fruta : prueba});    
 
     }

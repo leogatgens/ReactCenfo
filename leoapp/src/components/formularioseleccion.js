@@ -23,7 +23,7 @@ class TextBoxEspejo extends React.Component  {
     }
 
     handleClick = (event) => {
-        console.log("handleClick");
+    
         this.props.onTemperatureChange(this.state.filtro);
     }
     render(){

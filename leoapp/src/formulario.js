@@ -33,13 +33,13 @@ class Formulario extends React.Component {
     }
     handleChangeSelect = (prueba) => {
      
-        console.log(prueba);
+        
        this.setState({fruta : prueba});    
 
     }
 
     handleSubmit = (event) =>{
-         console.log(this.state);
+         
         alert("Hola loco " + this.state.value.toString() +  this.state.texto.toString() +  this.state.fruta.value.toString() );
         event.preventDefault();
     }

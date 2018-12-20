@@ -1,9 +1,8 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { List, Avatar } from 'antd';
-import { stringify } from 'querystring';
-
-
+import TextButtons from '../components/filtromenu';
+import { Flexcontainer,Flexcolumn } from '../components/estiloshtml';
 class LoadMoreList extends React.Component {
   constructor(props){
         super(props);
@@ -40,7 +39,7 @@ class LoadMoreList extends React.Component {
 
 
     componentDidMount() {
-        fetch("https://tripsapi20181211043716.azurewebsites.net/api/trips")          
+        fetch("https://localhost:44372/api/trips")          //https://tripsapi20181211043716.azurewebsites.net/api/trips
           .then(res => {      
              return res.json()
             }
@@ -67,26 +66,37 @@ class LoadMoreList extends React.Component {
          
             return (
               <div>
-                   <h1>Filtre por </h1>
-              
-                <List
-                itemLayout="horizontal"
-                dataSource={misViajes}
-                renderItem={item => (
-                  <List.Item>
-                    <List.Item.Meta                    
-                      avatar={<Avatar src={item.urlFlag} />}
-                      title={<a href={"https://www.google.com/search?q=" + item.pais}   target="_blank">{item.pais}</a>}
-                      description={"Tu viaje fue realizado en " +  
-                       this.convertirFecha(item.annoDeLaVisita)
-                    
-                    }
-                      
-                    />
-                  </List.Item>
+                  <TextButtons></TextButtons>
                   
-                )}
-              />
+                    <Flexcontainer>
+                    <Flexcolumn>
+                        <List
+                          itemLayout="horizontal"
+                          dataSource={misViajes}
+                          renderItem={item => (
+                            <List.Item>
+                              <List.Item.Meta                    
+                                avatar={<Avatar src={item.urlFlag} />}
+                                title={<a href={"https://www.google.com/search?q=" + item.pais}   target="_blank">{item.pais}</a>}
+                                description={"Tu viaje fue realizado en " +  
+                                this.convertirFecha(item.annoDeLaVisita) 
+                              
+                              }
+                                
+                              />
+                            </List.Item>
+                            
+                          )}
+                        />
+                  
+                  </Flexcolumn>
+                  <Flexcolumn>
+                    <h1>GAto</h1>
+                  </Flexcolumn>
+             
+             
+                  </Flexcontainer>   
+                 
               </div>
                 );
                 }

@@ -30,5 +30,23 @@ const Input = styled.input`
   width : 250px;
 `;
 
+const Flexcontainer = styled.div` 
+  display: flex; 
+`
 
-export {TituloPrincipal,Button,Input};
+const Flexcolumn = styled.div`
+width: 50%;
+margin: 10px;
+line-height: 75px;
+font-size: 30px;
+`
+
+
+
+
+export {
+  TituloPrincipal
+  ,Button,Input
+  ,Flexcontainer  
+  ,Flexcolumn
+};
