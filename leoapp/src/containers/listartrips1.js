@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import { List, Avatar } from 'antd';
 import TextButtons from '../components/filtromenu';
 import { Flexcontainer,Flexcolumn,TituloPrincipal } from '../components/estiloshtml';
-import  PendingTimeLine  from '../containers/timeline';
+import  PendingTimeLine  from '../components/timeline';
 class LoadMoreList extends React.Component {
   constructor(props){
         super(props);
