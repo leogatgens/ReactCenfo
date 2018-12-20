@@ -40,7 +40,7 @@ class LoadMoreList extends React.Component {
 
 
     componentDidMount() {
-        fetch("https://localhost:44372/api/trips")          //https://tripsapi20181211043716.azurewebsites.net/api/trips
+        fetch("https://tripsapi20181211043716.azurewebsites.net/api/trips")          //https://tripsapi20181211043716.azurewebsites.net/api/trips
           .then(res => {      
              return res.json()
             }

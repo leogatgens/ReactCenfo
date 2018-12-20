@@ -16,9 +16,9 @@ function TextButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button className={classes.button}>Default</Button>
+      <Button className={classes.button}>TIMELINE</Button>
       <Button color="primary" className={classes.button}>
-        Primary
+        Ordernar
       </Button>
       <Button color="secondary" className={classes.button}>
         Secondary
