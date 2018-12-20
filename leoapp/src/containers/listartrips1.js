@@ -2,7 +2,8 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { List, Avatar } from 'antd';
 import TextButtons from '../components/filtromenu';
-import { Flexcontainer,Flexcolumn } from '../components/estiloshtml';
+import { Flexcontainer,Flexcolumn,TituloPrincipal } from '../components/estiloshtml';
+import  PendingTimeLine  from '../containers/timeline';
 class LoadMoreList extends React.Component {
   constructor(props){
         super(props);
@@ -70,6 +71,7 @@ class LoadMoreList extends React.Component {
                   
                     <Flexcontainer>
                     <Flexcolumn>
+                    <TituloPrincipal>Tus viajes registrados</TituloPrincipal>
                         <List
                           itemLayout="horizontal"
                           dataSource={misViajes}
@@ -91,9 +93,10 @@ class LoadMoreList extends React.Component {
                   
                   </Flexcolumn>
                   <Flexcolumn>
-                    <h1>GAto</h1>
+                  <TituloPrincipal>Histograma</TituloPrincipal>
+                  <PendingTimeLine></PendingTimeLine>
                   </Flexcolumn>
-             
+         
              
                   </Flexcontainer>   
                  

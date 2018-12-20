@@ -20,7 +20,7 @@ const TitleBCCR = styled.h1`
 // Create a Wrapper component that'll render a <section> tag with some styles
 const Wrapper = styled.section`
   padding: 4em;
-  background: papayawhip;
+  background: #F0F0DF;
 `;
 
 
