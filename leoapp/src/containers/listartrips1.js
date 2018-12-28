@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { List, Avatar } from 'antd';
+import { List, Avatar,Spin } from 'antd';
 import TextButtons from '../components/filtromenu';
 import { Flexcontainer,Flexcolumn,TituloPrincipal } from '../components/estiloshtml';
 import  PendingTimeLine  from '../components/timeline';
@@ -8,7 +8,8 @@ class LoadMoreList extends React.Component {
   constructor(props){
         super(props);
         this.state = { 
-            cargado : true,                                   
+          initLoading: true,
+          loading : false,                                   
             misViajes : {},
             error : ""
         };      
@@ -48,21 +49,21 @@ class LoadMoreList extends React.Component {
           .then(              
             (result) => {     
                this.setState({  
-                  cargado : true,
+                  loading : true,
+                  initLoading : false,
                   misViajes :result
               });
             }            
-          ).catch(error => this.setState({ error, cargado: false }));
+          ).catch(error => this.setState({ error, loading: false }));
       
       } 
     render(){
 
-        const {error,misViajes,cargado} = this.state;
-        console.log(misViajes);
+        const {error,misViajes,loading,initLoading} = this.state;
+      
         if(error){     
-            return <div>Error : {error.message}</div>;
-        }else if(!cargado){
-            return <div>Cargando....</div>;
+            return <div>Lo sentimos algo salio mal:  {error.message}  </div>;
+       
         }else {      
          
             return (
@@ -74,30 +75,25 @@ class LoadMoreList extends React.Component {
                     <TituloPrincipal>Tus viajes registrados</TituloPrincipal>
                         <List
                           itemLayout="horizontal"
+                          loading={initLoading}
                           dataSource={misViajes}
                           renderItem={item => (
                             <List.Item>
                               <List.Item.Meta                    
                                 avatar={<Avatar src={item.urlFlag} />}
-                                title={<a href={"https://www.google.com/search?q=" + item.pais}   target="_blank">{item.pais}</a>}
+                                title={<a href={"https://www.google.com/search?q=" + item.pais }   target="_blank" rel="noopener noreferrer">{item.pais}</a>}
                                 description={"Tu viaje fue realizado en " +  
-                                this.convertirFecha(item.annoDeLaVisita) 
-                              
-                              }
-                                
+                                this.convertirFecha(item.annoDeLaVisita)                               
+                              }                                
                               />
-                            </List.Item>
-                            
+                            </List.Item>                            
                           )}
-                        />
-                  
+                        />                  
                   </Flexcolumn>
                   <Flexcolumn>
                   <TituloPrincipal>Histograma</TituloPrincipal>
                   <PendingTimeLine></PendingTimeLine>
-                  </Flexcolumn>
-         
-             
+                  </Flexcolumn>                    
                   </Flexcontainer>   
                  
               </div>
