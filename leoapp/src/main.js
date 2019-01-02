@@ -5,8 +5,8 @@ import {FormularioBusquedaPorMarca} from './components/formularioseleccion';
 import { Route, BrowserRouter ,Switch  } from 'react-router-dom';
 import {Notfound} from './components/controlesautos';
 
-import Example from './components/carousel';
-import {ListaViajesDelUsuario} from './containers/listartrips';
+//import Example from './components/carousel';
+import {ContenedorCards} from './components/cardcomponent';
 import {LoadMoreList} from './containers/listartrips1';
 
 import {MenuAPP} from './components/menu';
@@ -20,7 +20,7 @@ const Main = (props) =>{
         <div>
           <MenuAPP/>
           <Switch>               
-            <Route exact path="/" component={Example} /> 
+            <Route exact path="/" component={ContenedorCards} /> 
             <Route exact path="/marcas" component={Formularionewtrip} />     
             <Route exact path="/misviajes" component={LoadMoreList} />  
             <Route component={Notfound}/>
