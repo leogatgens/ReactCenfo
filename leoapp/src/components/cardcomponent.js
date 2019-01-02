@@ -18,18 +18,21 @@ const ContenedorCards = () => {
     </p>
     <Card
       type="inner"
+      style={{ width: 300 }}
       title="Registra tus viajes"
+      cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
       extra={<a href="#">More</a>}
     >
-      Inner Card content
+      Registra tus viajes, las fechas y los lugares que visitados.
     </Card>
     <Card
-      style={{ marginTop: 16 }}
+      style={{ marginTop: 16, width: 450 }}
       type="inner"
+      cover={<img alt="example" src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-545676.jpg" />}
       title="Enumera tus proximos viajes"
       extra={<a href="#">More</a>}
     >
-      Inner Card content
+      Has una lista de tus viajes en el futuro, sin orden ni fecha solo posibles lugares.
     </Card>
   </Card>
     );
