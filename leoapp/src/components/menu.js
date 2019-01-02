@@ -30,7 +30,7 @@ import {
         return(
             <div>
             <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">Tus viajes por el mundo</NavbarBrand>
+            <NavbarBrand href="/">Mis países por el mundo</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

@@ -19,16 +19,7 @@ function TextButtons(props) {
       <Button className={classes.button}>TIMELINE</Button>
       <Button color="primary" className={classes.button}>
         Ordernar
-      </Button>
-      <Button color="secondary" className={classes.button}>
-        Secondary
-      </Button>
-      <Button disabled className={classes.button}>
-        Disabled
-      </Button>
-      <Button href="#text-buttons" className={classes.button}>
-        Link
-      </Button>
+      </Button>    
       <input
         accept="image/*"
         className={classes.input}
