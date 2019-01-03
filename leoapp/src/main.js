@@ -6,6 +6,7 @@ import { Route, BrowserRouter ,Switch  } from 'react-router-dom';
 import {Notfound} from './components/controlesautos';
 
 //import Example from './components/carousel';
+import {CarouselPrincipal} from './components/antcarousel';
 import {ContenedorCards} from './components/cardcomponent';
 import {LoadMoreList} from './containers/listartrips1';
 
@@ -20,7 +21,7 @@ const Main = (props) =>{
         <div>
           <MenuAPP/>
           <Switch>               
-            <Route exact path="/" component={ContenedorCards} /> 
+            <Route exact path="/" component={CarouselPrincipal} /> 
             <Route exact path="/marcas" component={Formularionewtrip} />     
             <Route exact path="/misviajes" component={LoadMoreList} />  
             <Route component={Notfound}/>
