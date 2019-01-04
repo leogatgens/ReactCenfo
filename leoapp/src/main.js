@@ -21,7 +21,8 @@ const Main = (props) =>{
         <div>
           <MenuAPP/>
           <Switch>               
-            <Route exact path="/" component={CarouselPrincipal} /> 
+            <Route exact path="/" component={ContenedorCards} /> 
+            <Route exact path="/home2" component={CarouselPrincipal} />  
             <Route exact path="/marcas" component={Formularionewtrip} />     
             <Route exact path="/misviajes" component={LoadMoreList} />  
             <Route component={Notfound}/>
