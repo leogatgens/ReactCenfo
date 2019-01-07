@@ -1,15 +1,11 @@
 import React from 'react';
 import './index.css';
-import {ListaMarcasDeAutos} from './containers/listarmarcas';
-import {FormularioBusquedaPorMarca} from './components/formularioseleccion';
+
 import { Route, BrowserRouter ,Switch  } from 'react-router-dom';
 import {Notfound} from './components/controlesautos';
-
-//import Example from './components/carousel';
 import {CarouselPrincipal} from './components/antcarousel';
 import {ContenedorCards} from './components/cardcomponent';
 import {LoadMoreList} from './containers/listartrips1';
-
 import {MenuAPP} from './components/menu';
 import {Formularionewtrip} from './components/formularionewtrip';
 

@@ -8,10 +8,9 @@ class LoadMoreList extends React.Component {
   constructor(props){
         super(props);
         this.state = { 
-          initLoading: true,
-          loading : false,                                   
-            misViajes : {},
-            error : ""
+          initLoading: true,                                          
+          misViajes : {},
+          error : ""
         };      
   }
 
@@ -27,6 +26,17 @@ class LoadMoreList extends React.Component {
     return fechatexto;
    }
 
+
+   componentDidCatch(error, info) {
+    // Example "componentStack":
+    //   in ComponentThatThrows (created by App)
+    //   in ErrorBoundary (created by App)
+    //   in div (created by App)
+    //   in App
+    console.log("componentDidCatch");
+    console.log(info.componentStack);
+    console.log(error);
+  }
       componentWillUnmount(){       
      
       }
@@ -48,19 +58,18 @@ class LoadMoreList extends React.Component {
           )
           .then(              
             (result) => {     
-               this.setState({  
-                  loading : true,
+               this.setState({                
                   initLoading : false,
                   misViajes :result
               });
             }            
-          ).catch(error => this.setState({ error, loading: false }));
+          ).catch(error => this.setState({ error : error.message }));
       
       } 
     render(){
 
-        const {error,misViajes,loading,initLoading} = this.state;
-      
+        const {initLoading,error,misViajes} = this.state;
+        console.log(misViajes);
         if(error){     
             return <div>Lo sentimos algo salio mal:  {error.message}  </div>;
        

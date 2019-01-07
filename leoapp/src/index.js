@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import ListasCondicionales from './main';
+import Main from './main';
  
-ReactDOM.render(<ListasCondicionales/> , document.getElementById('root'));
+ReactDOM.render(<Main/> , document.getElementById('root'));
 
 serviceWorker.unregister();
 
