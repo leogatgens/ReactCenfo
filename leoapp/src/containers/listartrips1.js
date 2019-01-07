@@ -9,7 +9,7 @@ class LoadMoreList extends React.Component {
         super(props);
         this.state = { 
           initLoading: true,                                          
-          misViajes : {},
+          data : [],
           error : ""
         };      
   }
@@ -60,7 +60,7 @@ class LoadMoreList extends React.Component {
             (result) => {     
                this.setState({                
                   initLoading : false,
-                  misViajes :result
+                  data :result
               });
             }            
           ).catch(error => this.setState({ error : error.message }));
@@ -68,8 +68,8 @@ class LoadMoreList extends React.Component {
       } 
     render(){
 
-        const {initLoading,error,misViajes} = this.state;
-        console.log(misViajes);
+        const {initLoading,error,data} = this.state;
+        
         if(error){     
             return <div>Lo sentimos algo salio mal:  {error.message}  </div>;
        
@@ -85,7 +85,7 @@ class LoadMoreList extends React.Component {
                         <List
                           itemLayout="horizontal"
                           loading={initLoading}
-                          dataSource={misViajes}
+                          dataSource={data}
                           renderItem={item => (
                             <List.Item>
                               <List.Item.Meta                    
