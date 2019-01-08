@@ -1,6 +1,6 @@
 import { Select } from 'antd';
 import React from 'react';
-
+import {CountryCard} from './countrycard';
 const Option = Select.Option;
 
 const children = [];
@@ -10,37 +10,56 @@ country_list.forEach(element => {
     children.push(<Option key={element}>{element}</Option>);
 });
 
-function handleChange(value) {
-    console.log(`selected ${value}`);
 
-    
-  }
-  
-  function handleBlur() {
-    console.log('blur');
-  }
-  
-  function handleFocus() {
-    console.log('focus');
-  }
   
 
-const SelectCountry = (props) => {
+class SelectCountry extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+        value : "",                   
+        error : ""       
+    };           
+}
+
+
+ handleChange = (value) => {
+  console.log(`selected ${value}`);
+    this.setState({
+      value : value
+  });   
+
+}
+
+ handleBlur() {
+  console.log('blur');
+}
+
+handleFocus() {
+  console.log('focus');
+}
+  render(){
+    const valor= this.state.value; 
     return (
+        <div>
         <Select
         showSearch
-        style={{ width: 200 }}
+        style={{ width: '100%' }}
         placeholder="Select a country"
         optionFilterProp="children"
-        onChange={handleChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
+        onChange={this.handleChange}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
         filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
       >
         {children}
     </Select>
-    
+    {valor !== "" ?   <CountryCard data={valor}/> : null} 
+  
+    </div>
     );
+  }
+
 }
 
 export {SelectCountry};

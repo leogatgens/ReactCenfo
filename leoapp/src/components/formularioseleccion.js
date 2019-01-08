@@ -6,6 +6,7 @@ import {TomatoButton,Wrapper} from '../estilos';
 
 
 
+
 class TextBoxEspejo extends React.Component  {
     constructor(props){
         super(props); 

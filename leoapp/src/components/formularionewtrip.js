@@ -1,5 +1,5 @@
 import React from 'react';
-import {TomatoButton,Wrapper} from '../estilos';
+import {Wrapper} from '../estilos';
 import { TituloPrincipal } from './estiloshtml';
 import { SelectCountry } from './selectcountry';
 
@@ -11,7 +11,8 @@ import { SelectCountry } from './selectcountry';
 
             <TituloPrincipal>Seleccione sus nuevos países por visitar</TituloPrincipal>
             <SelectCountry></SelectCountry>
-            <TomatoButton>+ Agregar países</TomatoButton>
+     
+           
         </Wrapper>
     );
 }
