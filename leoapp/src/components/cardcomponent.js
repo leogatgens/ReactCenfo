@@ -5,17 +5,8 @@ import React from 'react';
 
 const ContenedorCards = () => {
     return(
-        <Card title="Un diario de tus viajes">
-    <p
-      style={{
-        fontSize: 14,
-        color: 'rgba(0, 0, 0, 0.85)',
-        marginBottom: 16,
-        fontWeight: 500,
-      }}
-    >
-      Vive tus viajes una y otra vez
-    </p>
+        <Card title="Crea un diario de tus viajes">
+   
     <Card
       type="inner"
       style={{ width: 300 }}

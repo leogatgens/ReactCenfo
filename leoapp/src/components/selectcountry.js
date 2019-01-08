@@ -11,18 +11,32 @@ country_list.forEach(element => {
 });
 
 function handleChange(value) {
-  console.log(`selected ${value}`);
-}
+    console.log(`selected ${value}`);
+
+    
+  }
+  
+  function handleBlur() {
+    console.log('blur');
+  }
+  
+  function handleFocus() {
+    console.log('focus');
+  }
+  
 
 const SelectCountry = (props) => {
     return (
-    <Select
-        mode="multiple"
-        style={{ width: '100%' }}
-        placeholder="Please select"
-        defaultValue={[]}
+        <Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Select a country"
+        optionFilterProp="children"
         onChange={handleChange}
-    >
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+      >
         {children}
     </Select>
     
