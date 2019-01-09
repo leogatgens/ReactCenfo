@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import {TomatoButton,Wrapper} from './estilos';
+import {TomatoButton,Wrapper} from '../estilos';
 let options = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },

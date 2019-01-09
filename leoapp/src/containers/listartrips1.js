@@ -77,9 +77,7 @@ class LoadMoreList extends React.Component {
          
             return (
               <div>
-                  <TextButtons></TextButtons>                  
-                 
-                 
+                  <TextButtons></TextButtons>                                            
                     <TituloPrincipal>Tus viajes registrados</TituloPrincipal>
                         <List
                           itemLayout="horizontal"
@@ -96,11 +94,7 @@ class LoadMoreList extends React.Component {
                               />
                             </List.Item>                            
                           )}
-                        />                  
-            
-                               
-             
-                 
+                        />        
               </div>
                 );
                 }
