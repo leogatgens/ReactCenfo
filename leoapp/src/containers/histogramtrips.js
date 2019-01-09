@@ -1,9 +1,8 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { List, Avatar } from 'antd';
 import { TituloPrincipal } from '../components/estiloshtml';
-
-class LoadWishTripsList extends React.Component {
+import  PendingTimeLine  from '../components/timeline';
+class LoadMoreList extends React.Component {
   constructor(props){
         super(props);
         this.state = { 
@@ -70,39 +69,18 @@ class LoadWishTripsList extends React.Component {
         const {initLoading,error,data} = this.state;
         
         if(error){     
-            return <div>Lo sentimos algo salio mal:  {error.message}  </div>;
-       
+            return <div>Lo sentimos algo salio mal:  {error.message}  </div>;       
         }else {      
          
             return (
-              <div>                          
-                    <TituloPrincipal>Tus futuros viajes </TituloPrincipal>
-                        <List
-                          itemLayout="horizontal"
-                          loading={initLoading}
-                          dataSource={data}
-                          renderItem={item => (
-                            <List.Item>
-                              <List.Item.Meta                    
-                                avatar={<Avatar src={item.urlFlag} />}
-                                title={<a href={"https://www.google.com/search?q=" + item.pais }   target="_blank" rel="noopener noreferrer">{item.pais}</a>}
-                                description={"Tu viaje fue realizado en " +  
-                                this.convertirFecha(item.annoDeLaVisita)                               
-                              }                                
-                              />
-                            </List.Item>                            
-                          )}
-                        />                  
-
+              <div>                 
+                    <TituloPrincipal>El cronograma de tus viajes.</TituloPrincipal>                    
+                    <PendingTimeLine></PendingTimeLine>
               </div>
                 );
-                }
-                
-     }
-    
-   
-     
+        }                
+     }  
 }
 
 
-export {LoadWishTripsList};
+export {LoadMoreList};
