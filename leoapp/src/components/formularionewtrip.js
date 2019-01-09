@@ -3,7 +3,7 @@ import {Wrapper} from '../estilos';
 import { TituloPrincipal } from './estiloshtml';
 import { SelectCountry } from './selectcountry';
 import { Tabs } from 'antd';
-import { TituloPrincipal as TituloPrin } from '../components/estiloshtml';
+
 import {LoadWishTripsList} from '../containers/wishlisttrips'
 
 
@@ -21,7 +21,7 @@ function callback(key) {
             <Tabs defaultActiveKey="1" onChange={callback}>
                 <TabPane tab="Add to Wish List" key="1">
                     <Wrapper>
-                            <TituloPrin>Escoga países por visitar</TituloPrin>
+                            <TituloPrincipal>Escoga países por visitar</TituloPrincipal>
                             <SelectCountry></SelectCountry>           
                     </Wrapper>
                 </TabPane>

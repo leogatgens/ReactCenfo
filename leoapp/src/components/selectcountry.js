@@ -1,4 +1,4 @@
-import { Select,Tabs  } from 'antd';
+import { Select  } from 'antd';
 import React from 'react';
 import {CountryCard} from './countrycard';
 const Option = Select.Option;

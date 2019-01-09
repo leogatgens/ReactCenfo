@@ -1,26 +1,34 @@
-import { Timeline, Icon } from 'antd';
+import { Timeline } from 'antd';
 import React from 'react';
+import { string } from 'prop-types';
 class PendingTimeLine extends React.Component {
+  constructor(props){
+    super(props);
+          
+}
+convertirFecha(fechatexto){
+  if(typeof fechatexto == "string"){
+   var dateobj= new Date(fechatexto);     
+   var year = dateobj.getFullYear();  
+   var  locale = "en-us";
+   var month = dateobj.toLocaleString(locale, { month: "long" });
+   return month.toString().concat(" ").concat(year.toString());
+  }
  
+ return fechatexto;
+}
 
 
   render() {
+    console.log(this);
     return (
       <div>
-        <Timeline >
-          <Timeline.Item>Tu primer viaje Venezuela 2015-09-01</Timeline.Item>
-          <Timeline.Item dot={<Icon type="clock-circle-o" style={{ fontSize: '16px' }} />} color="red">
-          Tu primer viaje a Cuba 2015-09-01          
-          </Timeline.Item>
-          <Timeline.Item>Tu viaje Nardia 2015-09-01</Timeline.Item>
-          <Timeline.Item>Tu viaje Nardia 2015-09-01</Timeline.Item>
-          <Timeline.Item>Tu viaje Nardia 2015-09-01</Timeline.Item>
-          <Timeline.Item>Tu viaje Nardia 2015-09-01</Timeline.Item>
-          <Timeline.Item>Tu viaje Nardia 2015-09-01</Timeline.Item>
-          <Timeline.Item>Tu viaje Nardia 2015-09-01</Timeline.Item>          
-          <Timeline.Item>Tu último viaje a SF USA 2015-09-01</Timeline.Item>
-        </Timeline>
-        
+        <Timeline>     
+        {this.props.data.map((item,i) => (                                
+                  <Timeline.Item key={i + "." + item.idPais} >Tu viaje a {item.pais } en  {this.convertirFecha(item.annoDeLaVisita)}</Timeline.Item>   
+        ))     
+       }    
+        </Timeline>        
       </div>
     );
   }

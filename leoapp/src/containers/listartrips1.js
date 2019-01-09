@@ -1,9 +1,12 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { List, Avatar } from 'antd';
+import { List, Avatar,Tabs } from 'antd';
 import TextButtons from '../components/filtromenu';
 import { TituloPrincipal } from '../components/estiloshtml';
+import  PendingTimeLine  from '../components/timeline';
 
+
+const TabPane = Tabs.TabPane;
 class LoadMoreList extends React.Component {
   constructor(props){
         super(props);
@@ -14,18 +17,23 @@ class LoadMoreList extends React.Component {
         };      
   }
 
-  convertirFecha(fechatexto){
-     if(typeof fechatexto == "string"){
-      var dateobj= new Date(fechatexto);     
-      var year = dateobj.getFullYear();  
-      var  locale = "en-us";
-      var month = dateobj.toLocaleString(locale, { month: "long" });
-      return month.toString().concat(" ").concat(year.toString());
-     }
-    
-    return fechatexto;
-   }
+ 
 
+   eliminarPaisesDuplicados(trips)
+   {
+    const idPaises = new Set();
+    const paisesVisitados = [];
+
+    trips.forEach(trip => {      
+       if(idPaises.has(trip.idPais) === false)
+       {
+          paisesVisitados.push(trip);
+       }
+      idPaises.add(trip.idPais);
+      
+     });
+     return paisesVisitados;
+   }
 
    componentDidCatch(error, info) {
     // Example "componentStack":
@@ -60,7 +68,7 @@ class LoadMoreList extends React.Component {
             (result) => {     
                this.setState({                
                   initLoading : false,
-                  data :result
+                  data : this.eliminarPaisesDuplicados(result)
               });
             }            
           ).catch(error => this.setState({ error : error.message }));
@@ -69,16 +77,23 @@ class LoadMoreList extends React.Component {
     render(){
 
         const {initLoading,error,data} = this.state;
-        
+   
+  
         if(error){     
             return <div>Lo sentimos algo salio mal:  {error.message}  </div>;
        
         }else {      
          
             return (
-              <div>
-                  <TextButtons></TextButtons>                                            
-                    <TituloPrincipal>Tus viajes registrados</TituloPrincipal>
+              <Tabs defaultActiveKey="1" onChange={this.callback}>
+              <TabPane tab="Historia de tus viajes" key="1">
+              <TituloPrincipal>El cronograma de tus viajes.</TituloPrincipal>                    
+                    <PendingTimeLine data={data}></PendingTimeLine>
+              </TabPane>
+
+              <TabPane tab="Lista países visitados" key="2">
+              <TextButtons></TextButtons>                                            
+                    <TituloPrincipal>Tus países</TituloPrincipal>
                         <List
                           itemLayout="horizontal"
                           loading={initLoading}
@@ -87,22 +102,18 @@ class LoadMoreList extends React.Component {
                             <List.Item>
                               <List.Item.Meta                    
                                 avatar={<Avatar src={item.urlFlag} />}
-                                title={<a href={"https://www.google.com/search?q=" + item.pais }   target="_blank" rel="noopener noreferrer">{item.pais}</a>}
-                                description={"Tu viaje fue realizado en " +  
-                                this.convertirFecha(item.annoDeLaVisita)                               
-                              }                                
+                                title={<a href={"https://www.google.com/search?q=" + item.pais }   target="_blank" rel="noopener noreferrer">{item.pais}</a>}                                                       
                               />
                             </List.Item>                            
                           )}
                         />        
-              </div>
+              </TabPane>          
+          </Tabs>                 
+           
                 );
-                }
-                
+                }                
      }
-    
-   
-     
+
 }
 
 
