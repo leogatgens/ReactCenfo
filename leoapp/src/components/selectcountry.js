@@ -1,4 +1,4 @@
-import { Select } from 'antd';
+import { Select,Tabs  } from 'antd';
 import React from 'react';
 import {CountryCard} from './countrycard';
 const Option = Select.Option;
@@ -10,9 +10,6 @@ country_list.forEach(element => {
     children.push(<Option key={element}>{element}</Option>);
 });
 
-
-  
-
 class SelectCountry extends React.Component {
   constructor(props){
     super(props);
@@ -21,7 +18,6 @@ class SelectCountry extends React.Component {
         error : ""       
     };           
 }
-
 
  handleChange = (value) => {
   console.log(`selected ${value}`);

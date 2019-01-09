@@ -1,10 +1,9 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { List, Avatar,Spin } from 'antd';
-import TextButtons from '../components/filtromenu';
-import { Flexcontainer,Flexcolumn,TituloPrincipal } from '../components/estiloshtml';
-import  PendingTimeLine  from '../components/timeline';
-class LoadMoreList extends React.Component {
+import { List, Avatar } from 'antd';
+import { TituloPrincipal } from '../components/estiloshtml';
+
+class LoadWishTripsList extends React.Component {
   constructor(props){
         super(props);
         this.state = { 
@@ -77,9 +76,8 @@ class LoadMoreList extends React.Component {
          
             return (
               <div>
-                  <TextButtons></TextButtons>                  
-                    <Flexcontainer>
-                    <Flexcolumn>
+                             
+                 
                     <TituloPrincipal>Tus viajes registrados</TituloPrincipal>
                         <List
                           itemLayout="horizontal"
@@ -97,12 +95,8 @@ class LoadMoreList extends React.Component {
                             </List.Item>                            
                           )}
                         />                  
-                  </Flexcolumn>
-                  <Flexcolumn>
-                  <TituloPrincipal>Histograma</TituloPrincipal>
-                  <PendingTimeLine></PendingTimeLine>
-                  </Flexcolumn>                    
-                  </Flexcontainer>   
+         
+                 
                  
               </div>
                 );
@@ -115,4 +109,4 @@ class LoadMoreList extends React.Component {
 }
 
 
-export {LoadMoreList};
+export {LoadWishTripsList};
