@@ -1,8 +1,8 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { List, Avatar } from 'antd';
-import { TituloPrincipal } from '../components/estiloshtml';
-
+import {WishList} from '../scenes/viewwishlist/wishlist'
+import { TituloPrincipal } from '../../../components/estiloshtml';
+import { List,Avatar } from 'antd';
 class LoadWishTripsList extends React.Component {
   constructor(props){
         super(props);
@@ -79,6 +79,7 @@ class LoadWishTripsList extends React.Component {
                     <TituloPrincipal>Tus futuros viajes </TituloPrincipal>
                         <List
                           itemLayout="horizontal"
+                          style={{ marginLeft:10 }}
                           loading={initLoading}
                           dataSource={data}
                           renderItem={item => (

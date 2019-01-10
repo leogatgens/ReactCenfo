@@ -21,7 +21,7 @@ convertirFecha(fechatexto){
 
 
   render() {
-    console.log(this);
+ 
     const indiceFinal = this.props.data.length -1;
     return (
       <div style={{ marginLeft:10 }}>
@@ -40,19 +40,19 @@ convertirFecha(fechatexto){
     if(i === 0){
       return (
         <Timeline.Item dot={<Icon type="trophy" style={{ fontSize: '26px' }} />} color="red">
-        Tu viaje a {item.pais} en  {this.convertirFecha(item.annoDeLaVisita)}
+        Tu ultimo viaje a {item.pais} en  {this.convertirFecha(item.annoDeLaVisita)}
         </Timeline.Item>      
       )
     }if(i === indiceFinal){
         return (
           <Timeline.Item dot={<Icon type="compass" style={{ fontSize: '26px' }} />} color="red">
-        Tu viaje a {item.pais} en  {this.convertirFecha(item.annoDeLaVisita)}
+        Tu primer viaje a {item.pais} en  {this.convertirFecha(item.annoDeLaVisita)}
         </Timeline.Item>
         )
 
     }else{
      return( <Timeline.Item key={i + "." + item.idPais} color= "green">
-      Tu viaje a {item.pais} en  {this.convertirFecha(item.annoDeLaVisita)}
+      {item.pais} en  {this.convertirFecha(item.annoDeLaVisita)}
     </Timeline.Item>)
     }
   } 

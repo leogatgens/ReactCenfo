@@ -1,10 +1,10 @@
 import React from 'react';
 import {Wrapper} from '../../../estilos';
 import { TituloPrincipal } from '../../../components/estiloshtml';
-import { SelectCountry } from './selectcountry';
+import { SelectCountry } from '../scenes/addwishlist/selectcountry';
 import { Tabs } from 'antd';
 
-import {LoadWishTripsList} from '../../../containers/wishlisttrips'
+import {LoadWishTripsList} from '../services/wishlisttrips'
 
 
 const TabPane = Tabs.TabPane;
@@ -19,17 +19,17 @@ function callback(key) {
     return( 
       
             <Tabs defaultActiveKey="1" onChange={callback}>
-                <TabPane tab="Add to Wish List" key="1">
+                
+                <TabPane tab="Wish list" key="1">
+                <LoadWishTripsList></LoadWishTripsList>
+                </TabPane>
+                <TabPane tab="Add to Wish List" key="2">
                     <Wrapper>
                             <TituloPrincipal>Escoga países por visitar</TituloPrincipal>
                             <SelectCountry></SelectCountry>           
                     </Wrapper>
                 </TabPane>
 
-                <TabPane tab="Wish list" key="2">
-                <LoadWishTripsList></LoadWishTripsList>
-                </TabPane>
-            
             </Tabs>
 
     );
