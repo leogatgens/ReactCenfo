@@ -36,26 +36,23 @@ class LoadMoreList extends React.Component {
    }
 
    componentDidCatch(error, info) {
-    // Example "componentStack":
-    //   in ComponentThatThrows (created by App)
-    //   in ErrorBoundary (created by App)
-    //   in div (created by App)
-    //   in App
+   
     console.log("componentDidCatch");
     console.log(info.componentStack);
     console.log(error);
   }
-      componentWillUnmount(){       
-     
-      }
-    
-      componentWillUpdate(){
-      
-      }
 
-      componentDidUpdate(){
-           
-      }
+componentWillUnmount(){       
+
+}
+    
+componentWillUpdate(){
+
+}
+
+  componentDidUpdate(){
+        
+  }
 
 
     componentDidMount() {
@@ -68,7 +65,7 @@ class LoadMoreList extends React.Component {
             (result) => {     
                this.setState({                
                   initLoading : false,
-                  data : this.eliminarPaisesDuplicados(result)
+                  data : result
               });
             }            
           ).catch(error => this.setState({ error : error.message }));
@@ -77,13 +74,11 @@ class LoadMoreList extends React.Component {
     render(){
 
         const {initLoading,error,data} = this.state;
-   
-  
+        const paiseseSinduplicados =  this.eliminarPaisesDuplicados(data);
+ 
         if(error){     
-            return <div>Lo sentimos algo salio mal:  {error.message}  </div>;
-       
-        }else {      
-         
+            return <div>Lo sentimos algo salio mal:  {error.message}  </div>;       
+        }else { 
             return (
               <Tabs defaultActiveKey="1" onChange={this.callback}>
               <TabPane tab="Historia de tus viajes" key="1">
@@ -93,11 +88,12 @@ class LoadMoreList extends React.Component {
 
               <TabPane tab="Lista países visitados" key="2">
               <TextButtons></TextButtons>                                            
-                    <TituloPrincipal>Tus países</TituloPrincipal>
-                        <List
+                    <TituloPrincipal>Has visitado {paiseseSinduplicados.length} países</TituloPrincipal>
+            
+                        <List style={{ marginLeft:10 }}
                           itemLayout="horizontal"
                           loading={initLoading}
-                          dataSource={data}
+                          dataSource={paiseseSinduplicados}
                           renderItem={item => (
                             <List.Item>
                               <List.Item.Meta                    

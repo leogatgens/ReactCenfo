@@ -37,9 +37,7 @@ import {
             <NavItem>
                 <NavLink exact to="/" className="nav-link" activeclassname="active" tag={RRNavLink}>Home</NavLink>
             </NavItem>
-            <NavItem>
-                <NavLink actvieclassname="active" to="/home2" tag={RRNavLink}>Home2 </NavLink>
-            </NavItem>
+        
             <NavItem>
                 <NavLink actvieclassname="active" to="/marcas" tag={RRNavLink}>Por visitar </NavLink>
             </NavItem>

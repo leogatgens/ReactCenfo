@@ -3,7 +3,6 @@ import './index.css';
 
 import { Route, BrowserRouter ,Switch  } from 'react-router-dom';
 import {Notfound} from './components/controlesautos';
-import {CarouselPrincipal} from './components/antcarousel';
 import {ContenedorCards} from './components/cardcomponent';
 import {LoadMoreList} from './containers/listartrips1';
 import {MenuAPP} from './components/menu';
@@ -18,7 +17,7 @@ const Main = (props) =>{
           <MenuAPP/>
           <Switch>               
             <Route exact path="/" component={ContenedorCards} /> 
-            <Route exact path="/home2" component={CarouselPrincipal} />  
+
             <Route exact path="/marcas" component={Formularionewtrip} />     
             <Route exact path="/misviajes" component={LoadMoreList} />  
             <Route component={Notfound}/>
