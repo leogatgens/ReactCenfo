@@ -1,8 +1,8 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { List, Avatar,Tabs } from 'antd';
-import TextButtons from '../components/filtromenu';
-import { TituloPrincipal } from '../components/estiloshtml';
+import TextButtons from '../../../components/filtromenu';
+import { TituloPrincipal } from '../../../components/estiloshtml';
 import  PendingTimeLine  from '../components/timeline';
 
 

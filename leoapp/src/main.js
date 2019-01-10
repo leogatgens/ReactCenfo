@@ -2,11 +2,11 @@ import React from 'react';
 import './index.css';
 
 import { Route, BrowserRouter ,Switch  } from 'react-router-dom';
-import {Notfound} from './components/controlesautos';
-import {ContenedorCards} from './components/cardcomponent';
-import {LoadMoreList} from './containers/listartrips1';
+import {Notfound} from './practice/controlesautos';
+import {ContenedorCards} from './scenes/home/components/cardcomponent';
+import {LoadMoreList} from './scenes/mytrips/services/listartrips1';
 import {MenuAPP} from './components/menu';
-import {Formularionewtrip} from './components/formularionewtrip';
+import {Formularionewtrip} from './scenes/tovisit/components/formularionewtrip';
 
 const Main = (props) =>{
     
@@ -17,8 +17,7 @@ const Main = (props) =>{
           <MenuAPP/>
           <Switch>               
             <Route exact path="/" component={ContenedorCards} /> 
-
-            <Route exact path="/marcas" component={Formularionewtrip} />     
+            { <Route exact path="/marcas" component={Formularionewtrip} />      }
             <Route exact path="/misviajes" component={LoadMoreList} />  
             <Route component={Notfound}/>
           </Switch>

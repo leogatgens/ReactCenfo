@@ -1,10 +1,10 @@
 import React from 'react';
-import {Wrapper} from '../estilos';
-import { TituloPrincipal } from './estiloshtml';
+import {Wrapper} from '../../../estilos';
+import { TituloPrincipal } from '../../../components/estiloshtml';
 import { SelectCountry } from './selectcountry';
 import { Tabs } from 'antd';
 
-import {LoadWishTripsList} from '../containers/wishlisttrips'
+import {LoadWishTripsList} from '../../../containers/wishlisttrips'
 
 
 const TabPane = Tabs.TabPane;

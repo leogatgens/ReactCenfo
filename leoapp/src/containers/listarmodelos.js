@@ -1,5 +1,5 @@
 import React from 'react';
-import {PantallaCargando,TituloBienvenida,ListadorDeModelos} from '../components/controlesautos';
+import {PantallaCargando,TituloBienvenida,ListadorDeModelos} from '../practice/controlesautos';
 
 
 
