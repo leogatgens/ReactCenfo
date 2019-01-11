@@ -3,7 +3,7 @@ import React from 'react';
 const { Meta } = Card;
 const ContenedorCardsBrowser = () => {
   return(
-    <div style={{ background: '#ECECEC', padding: '30px' }}>
+    <div style={{ background: '#F0F0DF', padding: '30px' }}>
     <Row gutter={16}>
       <Col span={8}>
       <Card      
