@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-const ContenedorCards = () => {
+const ContenedorCardsMobile = () => {
     return(
         <Card title="Crea un diario de tus viajes">
    
@@ -29,4 +29,4 @@ const ContenedorCards = () => {
     );
 }
 
-export {ContenedorCards};
+export {ContenedorCardsMobile};

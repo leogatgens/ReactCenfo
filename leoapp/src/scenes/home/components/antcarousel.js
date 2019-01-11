@@ -5,7 +5,7 @@ import {
     MobileView,    
     isMobile
   } from "react-device-detect";
-  import '../index.css';
+  import '../styles.css';
 
 const CarouselPrincipal = () =>{
 if(isMobile)
@@ -30,14 +30,9 @@ if(isMobile)
             <div className="imgcontainer"><h3>3</h3></div>
             <div className="imgcontainer"><h3>4</h3></div>
         </Carousel>  
-        <BrowserView>
-        <h1> This is rendered only in browser </h1>
-        </BrowserView>
-        <MobileView>
-                <h1> This is rendered only on mobile </h1>
-                
-
-         </MobileView>  
+     
+     
+     
     </div>
     );
         
