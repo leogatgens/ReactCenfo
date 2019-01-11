@@ -1,6 +1,6 @@
 import React from 'react';
 import {ContenedorCardsMobile} from '../components/cardcomponent'
-import {CarouselPrincipal} from '../components/antcarousel'
+import {ContenedorCardsBrowser} from '../components/horizontalcards'
 
 import {
     BrowserView,
@@ -12,7 +12,7 @@ const ContenedorCards = () => {
     return(
         <>
         <BrowserView>   
-            < CarouselPrincipal></CarouselPrincipal>    
+            < ContenedorCardsBrowser></ContenedorCardsBrowser>    
         </BrowserView>
         <MobileView>                
             <ContenedorCardsMobile></ContenedorCardsMobile>
