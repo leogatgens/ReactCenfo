@@ -1,6 +1,5 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import {WishList} from '../scenes/viewwishlist/wishlist'
 import { TituloPrincipal } from '../../../components/estiloshtml';
 import { List,Avatar } from 'antd';
 class LoadWishTripsList extends React.Component {
@@ -87,7 +86,7 @@ class LoadWishTripsList extends React.Component {
                               <List.Item.Meta                    
                                 avatar={<Avatar src={item.urlFlag} />}
                                 title={<a href={"https://www.google.com/search?q=" + item.pais }   target="_blank" rel="noopener noreferrer">{item.pais}</a>}
-                                description={"Tu viaje fue realizado en " +  
+                                description={"Viaje planeado para " +  
                                 this.convertirFecha(item.annoDeLaVisita)                               
                               }                                
                               />

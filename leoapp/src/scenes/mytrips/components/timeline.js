@@ -2,10 +2,6 @@ import { Timeline,Icon } from 'antd';
 import React from 'react';
 
 class PendingTimeLine extends React.Component {
-  constructor(props){
-    super(props);
-          
-}
 
 convertirFecha(fechatexto){
   if(typeof fechatexto == "string"){
@@ -39,13 +35,13 @@ convertirFecha(fechatexto){
   PintarSegunIndice(i, item,indiceFinal) {
     if(i === 0){
       return (
-        <Timeline.Item dot={<Icon type="trophy" style={{ fontSize: '26px' }} />} color="red">
+        <Timeline.Item key={i + "." + item.idPais} dot={<Icon type="trophy" style={{ fontSize: '26px' }} />} color="red">
         Tu ultimo viaje a {item.pais} en  {this.convertirFecha(item.annoDeLaVisita)}
         </Timeline.Item>      
       )
     }if(i === indiceFinal){
         return (
-          <Timeline.Item dot={<Icon type="compass" style={{ fontSize: '26px' }} />} color="red">
+          <Timeline.Item key={i + "." + item.idPais} dot={<Icon type="compass" style={{ fontSize: '26px' }} />} color="red">
         Tu primer viaje a {item.pais} en  {this.convertirFecha(item.annoDeLaVisita)}
         </Timeline.Item>
         )

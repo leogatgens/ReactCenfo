@@ -15,9 +15,7 @@ class LoadMoreList extends React.Component {
           data : [],
           error : ""
         };      
-  }
-
- 
+  } 
 
    eliminarPaisesDuplicados(trips)
    {
@@ -74,8 +72,9 @@ componentWillUpdate(){
     render(){
 
         const {initLoading,error,data} = this.state;
-        const paiseseSinduplicados =  this.eliminarPaisesDuplicados(data);
- 
+        
+       const paiseseSinduplicados =  this.eliminarPaisesDuplicados(data);
+
         if(error){     
             return <div>Lo sentimos algo salio mal:  {error.message}  </div>;       
         }else { 
@@ -107,7 +106,7 @@ componentWillUpdate(){
           </Tabs>                 
            
                 );
-                }                
+          }                
      }
 
 }

@@ -9,7 +9,7 @@ const ContenedorCardsBrowser = () => {
       <Card      
     
       title="Registra tus viajes"
-      cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+      cover={<img alt="example" src="https://yourtrips.azurewebsites.net/img/travel1.jpg"  />}
       extra={<a href="https://ant.design/components/list/">More</a>}
     >
       Registra tus viajes, las fechas y los lugares que visitados.
@@ -17,7 +17,7 @@ const ContenedorCardsBrowser = () => {
       </Col>
       <Col span={8}>
       <Card  
-      cover={<img alt="example" src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-545676.jpg" />}
+      cover={<img alt="example" src="https://yourtrips.azurewebsites.net/img/traveltime.jpg" />}
       title="Enumera tus proximos viajes"
       extra={<a href="https://ant.design/components/list/">More</a>}
     >
