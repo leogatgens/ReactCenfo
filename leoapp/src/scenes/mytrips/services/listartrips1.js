@@ -54,7 +54,7 @@ componentWillUpdate(){
 
 
     componentDidMount() {
-        fetch("https://tripsapi20181211043716.azurewebsites.net/api/trips")          //https://tripsapi20181211043716.azurewebsites.net/api/trips
+        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/1/trips")          //https://tripsapi20181211043716.azurewebsites.net/api/trips
           .then(res => {      
              return res.json()
             }

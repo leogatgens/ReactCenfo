@@ -7,6 +7,7 @@ import {ContenedorCards} from './scenes/home/scenes/homebydevice';
 import {LoadMoreList} from './scenes/mytrips/services/listartrips1';
 import {MenuAPP} from './components/menu';
 import {Formularionewtrip} from './scenes/tovisit/components/formularionewtrip';
+import {WrappedNormalLoginForm} from './scenes/login/components/loginform';
 
 const Main = (props) =>{
     
@@ -17,8 +18,9 @@ const Main = (props) =>{
           <MenuAPP/>
           <Switch>               
             <Route exact path="/" component={ContenedorCards} /> 
-            { <Route exact path="/marcas" component={Formularionewtrip} />      }
+             <Route exact path="/marcas" component={Formularionewtrip} />      
             <Route exact path="/misviajes" component={LoadMoreList} />  
+            <Route exact path="/login" component={WrappedNormalLoginForm} />  
             <Route component={Notfound}/>
           </Switch>
         </div>

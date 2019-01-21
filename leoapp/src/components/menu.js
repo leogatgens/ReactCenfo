@@ -16,7 +16,8 @@ import {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
-          isOpen: false
+          isOpen: false,
+          logged : false
         };
      
       }
@@ -27,6 +28,14 @@ import {
       }
       render()
       {
+        let control;
+        if( this.state.logged ){
+          control = null;
+        }else{
+          control =  <NavItem> <NavLink actvieclassname="active" to="/login" tag={RRNavLink}> Login</NavLink></NavItem>    
+          
+        }
+
         return(
             <div>
             <Navbar color="light" light expand="md">
@@ -44,7 +53,9 @@ import {
 
             <NavItem>              
                 <NavLink actvieclassname="active" to="/misviajes" tag={RRNavLink}> Mis viajes</NavLink>             
-            </NavItem>              
+            </NavItem> 
+         
+              {control}
             </Nav>
             </Collapse>
 
