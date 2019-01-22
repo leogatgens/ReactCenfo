@@ -8,10 +8,15 @@ import {LoadMoreList} from './scenes/mytrips/services/listartrips1';
 import {MenuAPP} from './components/menu';
 import {Formularionewtrip} from './scenes/tovisit/components/formularionewtrip';
 import {WrappedNormalLoginForm} from './scenes/login/components/loginform';
+import { CookiesProvider,withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
 
 class Main   extends React.Component {
+
+  
   constructor(props){
         super(props);
+    
         this.state = { 
           islogged: false          
         }; 
@@ -21,6 +26,8 @@ class Main   extends React.Component {
 
   onSuccessfulLogin = (e) =>{
     console.log(e);
+
+    
     this.setState({
       islogged: true
     });
@@ -32,7 +39,7 @@ class Main   extends React.Component {
   if(isUserLogged){
     console.log("logedd exitoso");
     return (
-      
+      <CookiesProvider>
       <BrowserRouter>           
           <div>
             <MenuAPP isUserLogged = {isUserLogged}/>
@@ -45,10 +52,12 @@ class Main   extends React.Component {
             </Switch>
           </div>
     </BrowserRouter>
+    </CookiesProvider>
         )
   }else{
     console.log("sin login");
  return( 
+  <CookiesProvider>
       <BrowserRouter>           
         <div>
           <MenuAPP/>
@@ -58,6 +67,7 @@ class Main   extends React.Component {
           </Switch>
         </div>
     </BrowserRouter>
+    </CookiesProvider>
  )
   }
      
