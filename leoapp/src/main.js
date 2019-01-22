@@ -4,7 +4,7 @@ import './index.css';
 import { Route, BrowserRouter ,Switch  } from 'react-router-dom';
 import {Notfound} from './practice/controlesautos';
 import {ContenedorCards} from './scenes/home/scenes/homebydevice';
-import {LoadMoreList} from './scenes/mytrips/services/listartrips1';
+import LoadMoreList from './scenes/mytrips/services/listartrips1';
 import {MenuAPP} from './components/menu';
 import {Formularionewtrip} from './scenes/tovisit/components/formularionewtrip';
 import {WrappedNormalLoginForm} from './scenes/login/components/loginform';
@@ -19,40 +19,54 @@ class Main   extends React.Component {
   constructor(props){
         super(props);
 
-  
-        const { cookies } = props;
 
+        const { cookies } = props;  
+     
+        let valorAlmacenado = cookies.get('user');
+        console.log("Leyo de cookie");
+        console.log(valorAlmacenado);
+        if(valorAlmacenado === undefined){
+          valorAlmacenado = {"user" : "", "iduser" : -1,"islogged" : false };
+        }
+    
   
         this.state = {         
-          islogged: cookies.get('user')  
+          userinfo: valorAlmacenado
         };
-
         
         this.onSuccessfulLogin = this.onSuccessfulLogin.bind(this);
   } 
 
   onSuccessfulLogin = (e) =>{
-    console.log(this.props);
-    const { cookies } = this.props;
- 
-    cookies.set('user', "{user : true}", { path: '/' });
+   
+    const { cookies } = this.props; 
+    let valorAlmacenado = undefined;
+    if(e.userName.toLowerCase() === "mariela")
+    {
+       valorAlmacenado = {"user" : "Mariela", "iduser" : 2,"islogged" : true };
+        cookies.set('user', JSON.stringify(valorAlmacenado), { path: '/' });
+    }else{
+       valorAlmacenado = {"user" : "leogatgens", "iduser" : 1,"islogged" : true };
+      cookies.set('user', JSON.stringify(valorAlmacenado), { path: '/' });
+    }
 
     this.setState({
-      islogged: true
+      userinfo: valorAlmacenado
     });
   }
 
   render(){
-     
 
-        let isUserLogged = this.state.islogged;
-        if(isUserLogged){
+
+
+        let userInfo = this.state.userinfo;
+        if(userInfo.islogged === true){
         
           return (
             <CookiesProvider>
             <BrowserRouter>           
                 <div>
-                  <MenuAPP isUserLogged = {isUserLogged}/>
+                  <MenuAPP data = {userInfo}/>
                   <Switch>               
                     <Route exact path="/" component={ContenedorCards} /> 
                     <Route exact path="/marcas" component={Formularionewtrip} />      

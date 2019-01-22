@@ -28,9 +28,10 @@ import {
       }
       render()
       {
-        console.log(this.props);
+
+     
         let control;
-        if( this.props.isUserLogged ){
+        if( this.props.data !== undefined ){
           control =  <Navbar color="light" light expand="md">
           <NavbarBrand href="/">Mis países por el mundo</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />

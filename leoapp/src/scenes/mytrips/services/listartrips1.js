@@ -4,16 +4,30 @@ import { List, Avatar,Tabs } from 'antd';
 import TextButtons from '../../../components/filtromenu';
 import { TituloPrincipal } from '../../../components/estiloshtml';
 import  PendingTimeLine  from '../components/timeline';
-
+import { CookiesProvider,withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
 
 const TabPane = Tabs.TabPane;
 class LoadMoreList extends React.Component {
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
+  
   constructor(props){
         super(props);
+        const { cookies } = props;  
+     
+        let valorAlmacenado = cookies.get('user');
+        console.log("Leyoooooooooo");
+        console.log(valorAlmacenado);
+        if(valorAlmacenado === undefined){
+          valorAlmacenado = {"user" : "", "iduser" : -1,"islogged" : false };
+        }
         this.state = { 
           initLoading: true,                                          
           data : [],
-          error : ""
+          error : "",
+          userinfo : valorAlmacenado
         };      
   } 
 
@@ -54,7 +68,8 @@ componentWillUpdate(){
 
 
     componentDidMount() {
-        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/1/trips")          //https://tripsapi20181211043716.azurewebsites.net/api/trips
+       console.log(this.state.userinfo.iduser);
+        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/" + this.state.userinfo.iduser + "/trips")          //https://tripsapi20181211043716.azurewebsites.net/api/trips
           .then(res => {      
              return res.json()
             }
@@ -112,4 +127,4 @@ componentWillUpdate(){
 }
 
 
-export {LoadMoreList};
+export default withCookies(LoadMoreList);
