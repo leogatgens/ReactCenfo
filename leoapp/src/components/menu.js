@@ -16,8 +16,8 @@ import {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
-          isOpen: false,
-          logged : false
+          isOpen: false
+       
         };
      
       }
@@ -28,38 +28,51 @@ import {
       }
       render()
       {
+        console.log(this.props);
         let control;
-        if( this.state.logged ){
-          control = null;
+        if( this.props.isUserLogged ){
+          control =  <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">Mis países por el mundo</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+          <NavItem>
+              <NavLink exact to="/" className="nav-link" activeclassname="active" tag={RRNavLink}>Home</NavLink>
+          </NavItem>
+      
+          <NavItem>
+              <NavLink actvieclassname="active" to="/marcas" tag={RRNavLink}>Por visitar </NavLink>
+          </NavItem>
+
+          <NavItem>              
+              <NavLink actvieclassname="active" to="/misviajes" tag={RRNavLink}> Mis viajes</NavLink>             
+          </NavItem> 
+       
+     
+          </Nav>
+          </Collapse>
+
+          </Navbar>;
         }else{
-          control =  <NavItem> <NavLink actvieclassname="active" to="/login" tag={RRNavLink}> Login</NavLink></NavItem>    
+          control =  <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">Mis países por el mundo</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+          <NavItem>              
+              <NavLink actvieclassname="active" to="/" tag={RRNavLink}>Login</NavLink>             
+          </NavItem>     
+     
+          </Nav>
+          </Collapse>
+
+          </Navbar>;  
           
         }
 
         return(
             <div>
-            <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">Mis países por el mundo</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-            <NavItem>
-                <NavLink exact to="/" className="nav-link" activeclassname="active" tag={RRNavLink}>Home</NavLink>
-            </NavItem>
-        
-            <NavItem>
-                <NavLink actvieclassname="active" to="/marcas" tag={RRNavLink}>Por visitar </NavLink>
-            </NavItem>
-
-            <NavItem>              
-                <NavLink actvieclassname="active" to="/misviajes" tag={RRNavLink}> Mis viajes</NavLink>             
-            </NavItem> 
-         
-              {control}
-            </Nav>
-            </Collapse>
-
-            </Navbar>
+           {control}
             </div>
         );
         }

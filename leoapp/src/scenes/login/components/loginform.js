@@ -6,17 +6,34 @@ import {
   import '../loginstyle.css'
 
   class NormalLoginForm extends React.Component {
+    constructor(props){
+      super(props);
+        
+} 
+
+componentWillUnmount(){
+  console.log("componentWillUnmount");   
+}
+
+componentWillUpdate(){
+      
+}
+
+componentDidUpdate(prevProps) {
+
+  // Typical usage (don't forget to compare props):
+  if (this.props.islogged !== prevProps.islogged) {
+    
+  }
+}
+
     handleSubmit = (e) => {
       e.preventDefault();
       this.props.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
+          // console.log('Received values of form: ', values);
      
-            const data = new FormData(this.event);
-            fetch('/api/form-submit-url', {
-              method: 'POST',
-              body: data,
-            });
+           this.props.onLogin(e);
         }
 
       });
@@ -24,6 +41,7 @@ import {
     }
   
     render() {
+  
       const { getFieldDecorator } = this.props.form;
       return (
           <div style={{padding: '24px'}}>
