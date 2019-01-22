@@ -12,50 +12,60 @@ import { CookiesProvider,withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 
 class Main   extends React.Component {
-
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
   
   constructor(props){
         super(props);
-    
-        this.state = { 
-          islogged: false          
-        }; 
+
+  
+        const { cookies } = props;
+
+  
+        this.state = {         
+          islogged: cookies.get('user')  
+        };
+
         
         this.onSuccessfulLogin = this.onSuccessfulLogin.bind(this);
   } 
 
   onSuccessfulLogin = (e) =>{
-    console.log(e);
+    console.log(this.props);
+    const { cookies } = this.props;
+ 
+    cookies.set('user', "{user : true}", { path: '/' });
 
-    
     this.setState({
       islogged: true
     });
   }
 
   render(){
+     
 
-    let isUserLogged = this.state.islogged;
-  if(isUserLogged){
-    console.log("logedd exitoso");
-    return (
-      <CookiesProvider>
-      <BrowserRouter>           
-          <div>
-            <MenuAPP isUserLogged = {isUserLogged}/>
-            <Switch>               
-              <Route exact path="/" component={ContenedorCards} /> 
-              <Route exact path="/marcas" component={Formularionewtrip} />      
-              <Route exact path="/misviajes" component={LoadMoreList} />  
-       
-              <Route component={Notfound}/>
-            </Switch>
-          </div>
-    </BrowserRouter>
-    </CookiesProvider>
+        let isUserLogged = this.state.islogged;
+        if(isUserLogged){
+        
+          return (
+            <CookiesProvider>
+            <BrowserRouter>           
+                <div>
+                  <MenuAPP isUserLogged = {isUserLogged}/>
+                  <Switch>               
+                    <Route exact path="/" component={ContenedorCards} /> 
+                    <Route exact path="/marcas" component={Formularionewtrip} />      
+                    <Route exact path="/misviajes" component={LoadMoreList} />  
+            
+                    <Route component={Notfound}/>
+                  </Switch>
+                </div>
+          </BrowserRouter>
+          </CookiesProvider>
         )
   }else{
-    console.log("sin login");
+ 
  return( 
   <CookiesProvider>
       <BrowserRouter>           
@@ -76,4 +86,4 @@ class Main   extends React.Component {
     
   
 
-export default Main;
+export default withCookies(Main);
