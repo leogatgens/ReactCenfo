@@ -56,10 +56,7 @@ class Main   extends React.Component {
   }
 
   render(){
-
-
-
-        let userInfo = this.state.userinfo;
+      userInfo = this.state.userinfo;
         if(userInfo.islogged === true){
         
           return (
