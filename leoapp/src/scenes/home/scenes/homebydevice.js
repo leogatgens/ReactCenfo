@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { Component } from 'react';
 import {ContenedorCardsMobile} from '../components/cardcomponent'
 import {ContenedorCardsBrowser} from '../components/horizontalcards'
 
@@ -8,7 +8,14 @@ import {
   } from "react-device-detect";
 
 
-const ContenedorCards = () => {
+class  ContenedorCards extends Component {
+
+    login() {
+        this.props.auth.login();
+      }
+    render(){
+
+ 
     return(
         <>
         <BrowserView>   
@@ -19,6 +26,7 @@ const ContenedorCards = () => {
          </MobileView>  
        </>
     )
+}
 }
 
 export {ContenedorCards};

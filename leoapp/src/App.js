@@ -24,6 +24,8 @@ class App extends Component {
   }
 
   render() {
+
+    console.log(this.props);
     const { isAuthenticated } = this.props.auth;
 
     return (
@@ -54,6 +56,7 @@ class App extends Component {
             }
             {
               isAuthenticated() && (
+                <div>
                   <Button
                     id="qsLogoutBtn"
                     bsStyle="primary"
@@ -62,6 +65,23 @@ class App extends Component {
                   >
                     Log Out
                   </Button>
+                     <Button
+                     id="qsLogoutBtn"
+                     bsStyle="primary"
+                     className="btn-margin"
+                     onClick={this.goTo.bind(this, 'porvisitar')}
+                   >
+                     Por visitar
+                   </Button>
+                   <Button
+                     id="qsLogoutBtn"
+                     bsStyle="primary"
+                     className="btn-margin"
+                     onClick={this.goTo.bind(this, 'misviajes')}
+                   >
+                     Por visitar
+                   </Button>
+                   </div>
                 )
             }
           </Navbar.Header>

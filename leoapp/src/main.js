@@ -1,100 +1,48 @@
 import React from 'react';
 import './index.css';
 
-import { Route, BrowserRouter ,Switch  } from 'react-router-dom';
-import {Notfound} from './practice/controlesautos';
+import { Route, Router  } from 'react-router-dom';
 import {ContenedorCards} from './scenes/home/scenes/homebydevice';
 import LoadMoreList from './scenes/mytrips/services/listartrips1';
-import {MenuAPP} from './components/menu';
 import {Formularionewtrip} from './scenes/tovisit/components/formularionewtrip';
-import {WrappedNormalLoginForm} from './scenes/login/components/loginform';
-import { CookiesProvider,withCookies, Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
+import Callback from './Callback/Callback';
+import Auth from './Auth/Auth';
+import history from './history';
 
-class Main   extends React.Component {
-  static propTypes = {
-    cookies: instanceOf(Cookies).isRequired
-  };
-  
-  constructor(props){
-        super(props);
+import App from './App';
+const auth = new Auth();
 
-
-        const { cookies } = props;  
-     
-        let valorAlmacenado = cookies.get('user');
-        console.log("Leyo de cookie");
-        console.log(valorAlmacenado);
-        if(valorAlmacenado === undefined){
-          valorAlmacenado = {"user" : "", "iduser" : -1,"islogged" : false };
-        }
-    
-  
-        this.state = {         
-          userinfo: valorAlmacenado
-        };
-        
-        this.onSuccessfulLogin = this.onSuccessfulLogin.bind(this);
-  } 
-
-  onSuccessfulLogin = (e) =>{
-   
-    const { cookies } = this.props; 
-    let valorAlmacenado = undefined;
-    if(e.userName.toLowerCase() === "mariela")
-    {
-       valorAlmacenado = {"user" : "Mariela", "iduser" : 2,"islogged" : true };
-        cookies.set('user', JSON.stringify(valorAlmacenado), { path: '/' });
-    }else{
-       valorAlmacenado = {"user" : "leogatgens", "iduser" : 1,"islogged" : true };
-      cookies.set('user', JSON.stringify(valorAlmacenado), { path: '/' });
-    }
-
-    this.setState({
-      userinfo: valorAlmacenado
-    });
+const handleAuthentication = ({location}) => {
+  if (/access_token|id_token|error/.test(location.hash)) {
+    auth.handleAuthentication();
   }
+}
+export const makeMainRoutes = () => {
 
-  render(){
-      userInfo = this.state.userinfo;
-        if(userInfo.islogged === true){
+ 
+
         
           return (
-            <CookiesProvider>
-            <BrowserRouter>           
+    
+            <Router history={history}>           
                 <div>
-                  <MenuAPP data = {userInfo}/>
-                  <Switch>               
-                    <Route exact path="/" component={ContenedorCards} /> 
-                    <Route exact path="/marcas" component={Formularionewtrip} />      
-                    <Route exact path="/misviajes" component={LoadMoreList} />  
-            
-                    <Route component={Notfound}/>
-                  </Switch>
+                    <Route path="/" render={(props) => <App auth={auth} {...props} />} />
+                    <Route  path="/home" render={(props) => <ContenedorCards auth={auth} {...props} />} /> 
+                    <Route  path="/porvisitar" render={(props) => <Formularionewtrip auth={auth} {...props} />}  />      
+                    <Route  path="/misviajes"  render={(props) => <LoadMoreList auth={auth} {...props} />} />  
+                    <Route path="/callback" render={(props) => {
+            handleAuthentication(props);
+            return <Callback {...props} /> 
+          }}/>
+                  
+                
                 </div>
-          </BrowserRouter>
-          </CookiesProvider>
-        )
-  }else{
+          </Router>
  
- return( 
-  <CookiesProvider>
-      <BrowserRouter>           
-        <div>
-          <MenuAPP/>
-          <Switch>            
-            <Route exact path="/"  render={(props) => ( <WrappedNormalLoginForm onLogin ={this.onSuccessfulLogin}/> ) } />  
-            <Route component={Notfound}/>
-          </Switch>
-        </div>
-    </BrowserRouter>
-    </CookiesProvider>
- )
-  }
+        )
+ 
      
     }
-}
+
     
   
-
-export default withCookies(Main);
