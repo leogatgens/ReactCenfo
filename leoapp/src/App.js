@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Button } from 'react-bootstrap';
+import { Navbar, Button,Nav } from 'react-bootstrap';
 import './index.css';
 
 class App extends Component {
@@ -30,11 +30,14 @@ class App extends Component {
 
     return (
       <div>
-        <Navbar fluid>
+        <Navbar  fluid>
           <Navbar.Header>
             <Navbar.Brand>
               <a href="#">Mis viajes por el mundo - usuario</a>
             </Navbar.Brand>
+            </Navbar.Header>
+            <Nav>
+          
             <Button
               bsStyle="primary"
               className="btn-margin"
@@ -84,7 +87,8 @@ class App extends Component {
                    </div>
                 )
             }
-          </Navbar.Header>
+     
+     </Nav>
         </Navbar>
       </div>
     );
