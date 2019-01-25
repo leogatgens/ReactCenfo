@@ -12,6 +12,8 @@ class LoadWishTripsList extends React.Component {
         };      
   }
 
+ 
+
   convertirFecha(fechatexto){
      if(typeof fechatexto == "string"){
       var dateobj= new Date(fechatexto);     
@@ -65,7 +67,7 @@ class LoadWishTripsList extends React.Component {
       
       } 
     render(){
-
+       
         const {initLoading,error,data} = this.state;
         
         if(error){     

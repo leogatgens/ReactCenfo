@@ -33,7 +33,7 @@ class App extends Component {
         <Navbar fluid>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">Auth0 - React</a>
+              <a href="#">Mis viajes por el mundo - usuario</a>
             </Navbar.Brand>
             <Button
               bsStyle="primary"
@@ -79,7 +79,7 @@ class App extends Component {
                      className="btn-margin"
                      onClick={this.goTo.bind(this, 'misviajes')}
                    >
-                     Por visitar
+                     Mis viajes
                    </Button>
                    </div>
                 )

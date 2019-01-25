@@ -14,25 +14,51 @@ function callback(key) {
 }
 
 
- const Formularionewtrip = (props) => {
+ class Formularionewtrip extends React.Component {
+    login() {
+        this.props.auth.login();
+      }
+    render(){
 
+        const { isAuthenticated } = this.props.auth;
     return( 
-      
+        <div>
+        {
+          isAuthenticated() && (
             <Tabs defaultActiveKey="1" onChange={callback}>
                 
-                <TabPane tab="Wish list" key="1">
-                <LoadWishTripsList></LoadWishTripsList>
-                </TabPane>
-                <TabPane tab="Add to Wish List" key="2">
-                    <Wrapper>
-                            <TituloPrincipal>Escoga países por visitar</TituloPrincipal>
-                            <SelectCountry></SelectCountry>           
-                    </Wrapper>
-                </TabPane>
+            <TabPane tab="Wish list" key="1">
+            <LoadWishTripsList></LoadWishTripsList>
+            </TabPane>
+            <TabPane tab="Add to Wish List" key="2">
+                <Wrapper>
+                        <TituloPrincipal>Escoga países por visitar</TituloPrincipal>
+                        <SelectCountry></SelectCountry>           
+                </Wrapper>
+            </TabPane>
 
-            </Tabs>
+        </Tabs>
+            )
+        }
+        {
+          !isAuthenticated() && (
+              <h4>
+                You are not logged in! Please{' '}
+                <a
+                  style={{ cursor: 'pointer' }}
+                  onClick={this.login.bind(this)}
+                >
+                  Log In
+                </a>
+                {' '}to continue.
+              </h4>
+            )
+        }
+      </div>
+            
 
     );
+}
 }
 
 
