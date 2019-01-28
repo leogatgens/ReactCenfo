@@ -1,8 +1,32 @@
 import React, { Component } from 'react';
-import { Navbar, Button,Nav } from 'react-bootstrap';
+import { NavLink as RRNavLink  } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { 
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  Collapse
+} from 'reactstrap';
 import './index.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+   
+    };
+ 
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
   goTo(route) {
     this.props.history.replace(`/${route}`)
   }
@@ -29,68 +53,49 @@ class App extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div>
-        <Navbar  fluid>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <a href="#">Mis viajes por el mundo - usuario</a>
-            </Navbar.Brand>
-            </Navbar.Header>
-            <Nav>
-          
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'home')}
-            >
-              Home
-            </Button>
+      <>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">Mis países por el mundo</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto" navbar>        
+          <NavItem>
+                <NavLink exact to="/home" className="nav-link" activeclassname="active" tag={RRNavLink}>Home</NavLink>
+          </NavItem>
             {
               !isAuthenticated() && (
-                  <Button
-                    id="qsLoginBtn"
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.login.bind(this)}
-                  >
-                    Log In
-                  </Button>
+            <NavItem>
+                <NavLink actvieclassname="active" to="/" onClick={this.login.bind(this)} tag={RRNavLink}>Login </NavLink>
+            </NavItem>
+  
+        
+        
                 )
             }
             {
               isAuthenticated() && (
-                <div>
-                  <Button
-                    id="qsLogoutBtn"
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.logout.bind(this)}
-                  >
-                    Log Out
-                  </Button>
-                     <Button
-                     id="qsLogoutBtn"
-                     bsStyle="primary"
-                     className="btn-margin"
-                     onClick={this.goTo.bind(this, 'porvisitar')}
-                   >
-                     Por visitar
-                   </Button>
-                   <Button
-                     id="qsLogoutBtn"
-                     bsStyle="primary"
-                     className="btn-margin"
-                     onClick={this.goTo.bind(this, 'misviajes')}
-                   >
-                     Mis viajes
-                   </Button>
-                   </div>
+                <>   
+                <NavItem>
+                    <NavLink actvieclassname="active" to="/porvisitar" tag={RRNavLink}>Por visitar </NavLink>
+                </NavItem>
+
+                <NavItem>              
+                    <NavLink actvieclassname="active" to="/misviajes" tag={RRNavLink}> Mis viajes</NavLink>             
+                </NavItem> 
+                <NavItem>
+                <NavLink actvieclassname="active" to="/" onClick={this.logout.bind(this)} tag={RRNavLink}>Logout </NavLink>
+            </NavItem>
+  
+       
+                   </>
                 )
             }
      
      </Nav>
-        </Navbar>
-      </div>
+          </Collapse>
+
+          </Navbar>
+      </>
     );
   }
 }

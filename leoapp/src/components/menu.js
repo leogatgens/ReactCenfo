@@ -79,4 +79,4 @@ import {
         }
  }
 
-export {MenuAPP};
+export default {MenuAPP};
