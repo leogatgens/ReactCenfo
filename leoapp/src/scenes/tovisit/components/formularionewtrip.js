@@ -28,7 +28,7 @@ function callback(key) {
             <Tabs defaultActiveKey="1" onChange={callback}>
                 
             <TabPane tab="Wish list" key="1">
-            <LoadWishTripsList></LoadWishTripsList>
+            <LoadWishTripsList auth = {this.props.auth}></LoadWishTripsList>
             </TabPane>
             <TabPane tab="Add to Wish List" key="2">
                 <Wrapper>
