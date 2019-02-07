@@ -47,7 +47,7 @@ class LoadWishTripsList extends React.Component {
 
 
     componentDidMount() {
-      console.log(this.props.auth.getAccessToken());
+   
       console.log(this.props.auth);
 
       console.log("componentDidMount");
