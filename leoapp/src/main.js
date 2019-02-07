@@ -18,12 +18,7 @@ const handleAuthentication = ({location}) => {
   }
 }
 export const makeMainRoutes = () => {
-
- 
-
-        
-          return (
-    
+          return (    
             <Router history={history}>           
                 <div>
                     <Route path="/" render={(props) => <App auth={auth} {...props} />} />
@@ -31,11 +26,9 @@ export const makeMainRoutes = () => {
                     <Route  path="/porvisitar" render={(props) => <Formularionewtrip auth={auth} {...props} />}  />      
                     <Route  path="/misviajes"  render={(props) => <LoadMoreList auth={auth} {...props} />} />  
                     <Route path="/callback" render={(props) => {
-            handleAuthentication(props);
-            return <Callback {...props} /> 
-          }}/>
-                  
-                
+                          handleAuthentication(props);
+                          return <Callback {...props} /> 
+                        }}/>    
                 </div>
           </Router>
  

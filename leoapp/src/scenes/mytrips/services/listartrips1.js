@@ -4,8 +4,7 @@ import { List, Avatar,Tabs } from 'antd';
 import TextButtons from '../../../components/filtromenu';
 import { TituloPrincipal } from '../../../components/estiloshtml';
 import  PendingTimeLine  from '../components/timeline';
-import { CookiesProvider,withCookies, Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
+
 
 const TabPane = Tabs.TabPane;
 class LoadMoreList extends React.Component {
@@ -60,7 +59,10 @@ componentWillUpdate(){
 
     componentDidMount() {
    
-        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/1/trips")         
+        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/1/trips",
+        {headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}`}
+
+      })        
           .then(res => {      
              return res.json()
             }
@@ -118,4 +120,4 @@ componentWillUpdate(){
 }
 
 
-export default withCookies(LoadMoreList);
+export default LoadMoreList;

@@ -28,11 +28,7 @@ class LoadWishTripsList extends React.Component {
 
 
    componentDidCatch(error, info) {
-    // Example "componentStack":
-    //   in ComponentThatThrows (created by App)
-    //   in ErrorBoundary (created by App)
-    //   in div (created by App)
-    //   in App
+
     console.log("componentDidCatch");
     console.log(info.componentStack);
     console.log(error);
@@ -51,12 +47,16 @@ class LoadWishTripsList extends React.Component {
 
 
     componentDidMount() {
+      console.log(this.props.auth.getAccessToken());
       console.log(this.props.auth);
-        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/1/trips/wishlists",
+
+      console.log("componentDidMount");
+        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/1/wishlists",
         {headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}`}
 
-        })          //https://tripsapi20181211043716.azurewebsites.net/api/trips
-          .then(res => {      
+        })         
+          .then(res => {   
+            console.log(res);   
              return res.json()
             }
           )
@@ -68,7 +68,7 @@ class LoadWishTripsList extends React.Component {
               });
             }            
           ).catch(error => this.setState({ error : error.message }));
-      
+          console.log("componentDidMount termino");
       } 
     render(){
        
