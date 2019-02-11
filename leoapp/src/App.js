@@ -40,6 +40,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.auth);
     const { renewSession } = this.props.auth;
 
     if (localStorage.getItem('isLoggedIn') === 'true') {
@@ -49,8 +50,11 @@ class App extends Component {
 
   render() {
 
-    
+    console.log("REnder");
     const { isAuthenticated } = this.props.auth;
+console.log(this.props.auth);
+console.log(isAuthenticated());
+
 
     return (
       <>

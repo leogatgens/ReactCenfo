@@ -10,6 +10,7 @@ import Main from './main';
 const auth = new Auth();
 
 const handleAuthentication = ({location}) => {
+  console.log("handleAuthentication");
   if (/access_token|id_token|error/.test(location.hash)) {
     auth.handleAuthentication();
   }
