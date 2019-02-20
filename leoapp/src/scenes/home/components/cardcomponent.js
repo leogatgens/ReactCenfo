@@ -11,7 +11,7 @@ const ContenedorCardsMobile = () => {
       type="inner"
       style={{ width: 300 }}
       title="Registra tus viajes"
-      cover={<img alt="example" src="https://yourtrips.azurewebsites.net/img/travel1.jpg"  />}
+      cover={<img alt="example" src="https://yourtripssite.z19.web.core.windows.net/img/travel1.jpg"  />}
       extra={<a href="https://ant.design/components/list/">More</a>}
     >
       Registra tus viajes, las fechas y los lugares que visitados.
@@ -19,7 +19,7 @@ const ContenedorCardsMobile = () => {
     <Card
       style={{ marginTop: 16, width: 300 }}
       type="inner"
-      cover={<img alt="example" src="https://yourtrips.azurewebsites.net/img/traveltime.jpg" />}
+      cover={<img alt="example" src="https://yourtripssite.z19.web.core.windows.net/img/traveltime.jpg" />}
       title="Enumera tus proximos viajes"
       extra={<a href="https://ant.design/components/list/">More</a>}
     >

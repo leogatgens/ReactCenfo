@@ -6,7 +6,8 @@ export default class Auth {
   accessToken;
   idToken;
   expiresAt;
-
+  userProfile;
+  
   auth0 = new auth0.WebAuth({
     domain: AUTH_CONFIG.domain,
     clientID: AUTH_CONFIG.clientId,
@@ -14,6 +15,7 @@ export default class Auth {
     responseType: 'token id_token',
     audience: 'https://leogatgens.auth0.com/api/v2/',
     scope: 'openid profile read:messages'
+ 
   });
 
   constructor() {
@@ -24,6 +26,7 @@ export default class Auth {
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
     this.renewSession = this.renewSession.bind(this);
+    this.getprofile = this.getprofile.bind(this);
   }
 
   login() {
@@ -89,7 +92,20 @@ export default class Auth {
     history.replace('/home');
   }
 
+   getprofile() {
+    var gato;
+    this.auth0.client.userInfo(this.accessToken, function(err, profile) {
+      if (profile) {
+     console.log(profile);
+        gato = profile;
+      }
+    });
+    return gato;
+  }
+
   isAuthenticated() {
+
+   
     // Check whether the current time is past the
     // access token's expiry time
     let expiresAt = this.expiresAt;

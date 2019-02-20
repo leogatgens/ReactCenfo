@@ -58,8 +58,12 @@ componentWillUpdate(){
 
 
     componentDidMount() {
-      console.log(this.props.auth);
-        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/1/trips",
+   
+
+      let profile = this.props.auth.getprofile();
+      console.log("Leo" + profile);
+      
+        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/" + 1  + "/trips",
         {headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}`}
 
       })        
