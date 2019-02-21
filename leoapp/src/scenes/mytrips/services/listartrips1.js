@@ -60,10 +60,10 @@ componentWillUpdate(){
     componentDidMount() {
    
 
-      let profile = this.props.auth.getprofile();
-      console.log("Leo" + profile);
       
-        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/" + 1  + "/trips",
+       console.log(this);
+      
+        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/" + this.props.auth.userProfile  + "/trips",
         {headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}`}
 
       })        

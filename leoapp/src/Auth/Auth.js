@@ -6,7 +6,7 @@ export default class Auth {
   accessToken;
   idToken;
   expiresAt;
-  userProfile;
+  userProfile = {};
   
   auth0 = new auth0.WebAuth({
     domain: AUTH_CONFIG.domain,
@@ -15,6 +15,7 @@ export default class Auth {
     responseType: 'token id_token',
     audience: 'https://leogatgens.auth0.com/api/v2/',
     scope: 'openid profile read:messages'
+  
  
   });
 
@@ -26,17 +27,19 @@ export default class Auth {
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
     this.renewSession = this.renewSession.bind(this);
-    this.getprofile = this.getprofile.bind(this);
+    
   }
 
   login() {
     this.auth0.authorize();
+   
   }
 
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
+     
       } else if (err) {
         history.replace('/home');
         console.log(err);
@@ -63,6 +66,16 @@ export default class Auth {
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
 
+    this.auth0.client.userInfo(authResult.accessToken,  (err, user)  => {
+      if (user) { 
+        this.userProfile = user.sub;
+        
+
+      }
+      // Now you have the user's information 
+    });
+
+   
     // navigate to the home route
     history.replace('/home');
   }
@@ -92,16 +105,18 @@ export default class Auth {
     history.replace('/home');
   }
 
-   getprofile() {
-    var gato;
-    this.auth0.client.userInfo(this.accessToken, function(err, profile) {
-      if (profile) {
-     console.log(profile);
-        gato = profile;
-      }
-    });
-    return gato;
-  }
+  //  getprofile = (props) =>  {
+  
+  //   this.userProfile = "Falta";
+  //   console.log(this);
+  //   this.auth0.client.userInfo(this.accessToken, function(err, profile) {
+  //     if (profile) {      
+  //       console.log(profile);
+  //     }
+
+  //   });
+
+  // }
 
   isAuthenticated() {
 
