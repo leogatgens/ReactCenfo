@@ -21,6 +21,7 @@ class SelectCountry extends React.Component {
 
  handleChange = (value) => {
   console.log(`selected ${value}`);
+  console.log(this);
     this.setState({
       value : value
   });   
@@ -35,7 +36,12 @@ handleFocus() {
   console.log('focus');
 }
   render(){
-    const valor= this.state.value; 
+
+    
+let selectedCountry = {
+  valor : this.state.value,
+  auth : this.props.auth
+}
     return (
         <div>
         <Select
@@ -50,7 +56,7 @@ handleFocus() {
       >
         {children}
     </Select>
-    {valor !== "" ?   <CountryCard data={valor}/> : null} 
+    {selectedCountry.valor !== "" ?   <CountryCard data={selectedCountry}/> : null} 
   
     </div>
     );

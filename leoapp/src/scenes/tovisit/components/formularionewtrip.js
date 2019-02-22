@@ -15,11 +15,16 @@ function callback(key) {
 
 
  class Formularionewtrip extends React.Component {
+  constructor(props){
+    super(props);
+       
+}
+
+
     login() {
         this.props.auth.login();
-      }
+    }
     render(){
-
         const { isAuthenticated } = this.props.auth;
     return( 
         <div>
@@ -33,7 +38,7 @@ function callback(key) {
             <TabPane tab="Add to Wish List" key="2">
                 <Wrapper>
                         <TituloPrincipal>Escoga países por visitar</TituloPrincipal>
-                        <SelectCountry></SelectCountry>           
+                        <SelectCountry  auth = {this.props.auth}></SelectCountry>           
                 </Wrapper>
             </TabPane>
 
