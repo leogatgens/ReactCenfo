@@ -44,12 +44,9 @@ function callback(key) {
           !isAuthenticated() && (
               <h4>
                 You are not logged in! Please{' '}
-                <a
-                  style={{ cursor: 'pointer' }}
-                  onClick={this.login.bind(this)}
-                >
+                <button   style={{ cursor: 'pointer' }} onClick={this.login.bind(this)}>
                   Log In
-                </a>
+                </button >
                 {' '}to continue.
               </h4>
             )

@@ -48,15 +48,12 @@ class LoadWishTripsList extends React.Component {
       }
 
 
-    componentDidMount() {
-
-    
-      //const url = `https://localhost:44372/api/${this.props.auth.userProfile}/wishlists`;
+    componentDidMount() {    
+      
         fetch(`https://tripsapi20181211043716.azurewebsites.net/api/travelers/${this.props.auth.userProfile}/wishlists`, {headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}`}
 
         })         
-          .then(res => {   
-            console.log(res);   
+          .then(res => {           
              return res.json()
             }
           )

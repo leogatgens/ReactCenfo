@@ -1,7 +1,7 @@
 import history from '../history';
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0-variables';
-import axios from 'axios';
+
 export default class Auth {
   accessToken;
   idToken;
@@ -69,7 +69,7 @@ export default class Auth {
     this.auth0.client.userInfo(authResult.accessToken,  (err, user)  => {
       if (user) { 
         this.userProfile = user.sub;      
-        this.RegisterUser(user);
+        this.IsNewUser(user);
       }
       // Now you have the user's information 
     });
@@ -79,16 +79,12 @@ export default class Auth {
     history.replace('/home');
   }
 
-  RegisterUser(user) {
+  RegisterUser = (user)=> {
     let data = {
-      FirstName:"hola",
-      LastName:"sdfsdfsdf",
-      ClientId:"googleoauth2testingtesting2"
-   }
-
-  
-
-  console.log(    JSON.stringify(data));
+      FirstName:user.given_name,
+      LastName:user.family_name,
+      ClientId:user.sub
+   }   
     fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers", {   
       method: 'post',
       headers: {     
@@ -104,10 +100,26 @@ export default class Auth {
       )
       .then(              
         (result) => {     
-         console.log("adsfasdfasdf");
+         console.log(result);
         }            
       ).catch(error => console.log(error));
     
+  }
+
+  IsNewUser = (user) =>{
+    fetch(`https://tripsapi20181211043716.azurewebsites.net/api/travelers/${user.sub}`,{
+      headers: {     
+        'Accept': 'application/json',  
+        'Content-Type': 'application/json'
+      },
+    })         
+    .then(res => {     
+       if(res.status === 404){
+          this.RegisterUser(user);
+       }
+    }
+    )
+    .catch(error => console.log(error));  
   }
 
   renewSession() {
