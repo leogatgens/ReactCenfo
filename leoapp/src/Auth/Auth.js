@@ -1,7 +1,7 @@
 import history from '../history';
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0-variables';
-
+import axios from 'axios';
 export default class Auth {
   accessToken;
   idToken;
@@ -68,9 +68,8 @@ export default class Auth {
 
     this.auth0.client.userInfo(authResult.accessToken,  (err, user)  => {
       if (user) { 
-        this.userProfile = user.sub;
-        
-
+        this.userProfile = user.sub;      
+        this.RegisterUser(user);
       }
       // Now you have the user's information 
     });
@@ -78,6 +77,37 @@ export default class Auth {
    
     // navigate to the home route
     history.replace('/home');
+  }
+
+  RegisterUser(user) {
+    let data = {
+      FirstName:"hola",
+      LastName:"sdfsdfsdf",
+      ClientId:"googleoauth2testingtesting2"
+   }
+
+  
+
+  console.log(    JSON.stringify(data));
+    fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers", {   
+      method: 'post',
+      headers: {     
+        'Accept': 'application/json',  
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })         
+      .then(res => {   
+        console.log(res);   
+         return res.json()
+        }
+      )
+      .then(              
+        (result) => {     
+         console.log("adsfasdfasdf");
+        }            
+      ).catch(error => console.log(error));
+    
   }
 
   renewSession() {
@@ -105,18 +135,7 @@ export default class Auth {
     history.replace('/home');
   }
 
-  //  getprofile = (props) =>  {
   
-  //   this.userProfile = "Falta";
-  //   console.log(this);
-  //   this.auth0.client.userInfo(this.accessToken, function(err, profile) {
-  //     if (profile) {      
-  //       console.log(profile);
-  //     }
-
-  //   });
-
-  // }
 
   isAuthenticated() {
 

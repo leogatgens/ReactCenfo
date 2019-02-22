@@ -2,6 +2,8 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { TituloPrincipal } from '../../../components/estiloshtml';
 import { List,Avatar } from 'antd';
+
+
 class LoadWishTripsList extends React.Component {
   constructor(props){
         super(props);
@@ -47,9 +49,10 @@ class LoadWishTripsList extends React.Component {
 
 
     componentDidMount() {
-   
-        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/"+ this.props.auth.userProfile  + "/wishlists",
-        {headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}`}
+
+    
+      //const url = `https://localhost:44372/api/${this.props.auth.userProfile}/wishlists`;
+        fetch(`https://tripsapi20181211043716.azurewebsites.net/api/travelers/${this.props.auth.userProfile}/wishlists`, {headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}`}
 
         })         
           .then(res => {   
@@ -65,7 +68,7 @@ class LoadWishTripsList extends React.Component {
               });
             }            
           ).catch(error => this.setState({ error : error.message }));
-          console.log("componentDidMount termino");
+          
       } 
     render(){
        
