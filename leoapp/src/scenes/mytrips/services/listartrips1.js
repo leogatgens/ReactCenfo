@@ -68,11 +68,13 @@ componentWillUpdate(){
 
       })        
           .then(res => {      
-             return res.json()
+            console.log("then 1");
+             return res.json();
             }
           )
           .then(              
-            (result) => {     
+            (result) => {   
+              console.log("then 2");  
                this.setState({                
                   initLoading : false,
                   data : result

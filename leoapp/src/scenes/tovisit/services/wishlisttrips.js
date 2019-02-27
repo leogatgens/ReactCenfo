@@ -2,7 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { TituloPrincipal } from '../../../components/estiloshtml';
 import { List,Avatar } from 'antd';
-
+import { GLOBALS} from '../../globals/globals-variables';
 
 class LoadWishTripsList extends React.Component {
   constructor(props){
@@ -14,9 +14,8 @@ class LoadWishTripsList extends React.Component {
         };      
   }
 
- 
-
   convertirFecha(fechatexto){
+    console.log(fechatexto);
      if(typeof fechatexto == "string"){
       var dateobj= new Date(fechatexto);     
       var year = dateobj.getFullYear();  
@@ -35,29 +34,33 @@ class LoadWishTripsList extends React.Component {
     console.log(info.componentStack);
     console.log(error);
   }
-      componentWillUnmount(){       
-     
-      }
+    componentWillUnmount(){       
     
-      componentWillUpdate(){
-      
+    }
+  
+    componentWillUpdate(){
+    
+    }
+
+    componentDidUpdate(){
+          
+    }
+
+
+    componentDidMount() {       
+      const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.auth.userProfile}/wishlists`;
+      var miInit = {               
+        headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}` }          
       }
-
-      componentDidUpdate(){
-           
-      }
-
-
-    componentDidMount() {    
-      
-        fetch(`https://tripsapi20181211043716.azurewebsites.net/api/travelers/${this.props.auth.userProfile}/wishlists`, {headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}`}
-        })         
-          .then(res => {           
+        fetch(serviceUrl, miInit)         
+          .then(res => {     
+               
              return res.json()
             }
           )
           .then(              
             (result) => {     
+              
                this.setState({                
                   initLoading : false,
                   data :result
@@ -68,10 +71,11 @@ class LoadWishTripsList extends React.Component {
       } 
     render(){
        
+      
         const {initLoading,error,data} = this.state;
-        
+        console.log(data);
         if(error){     
-            return <div>Lo sentimos algo salio mal:  {error.message}  </div>;
+            return <div>Lo sentimos algo salio mal:  {error}  </div>;
        
         }else {      
          
