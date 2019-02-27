@@ -1,50 +1,52 @@
 import { Select  } from 'antd';
 import React from 'react';
 import {CountryCard} from './countrycard';
+
 const Option = Select.Option;
-
 const children = [];
-var country_list = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
-
-country_list.forEach(element => {
-    children.push(<Option key={element}>{element}</Option>);
-});
-
 class SelectCountry extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-        value : "",                   
+        selectedvalue : {
+            key : -1,
+            label : ""
+      },                   
         error : ""       
-    };           
+    };  
+    
+    children.length = 0;
+    this.props.data.countries.forEach(element => {
+    children.push(<Option key={element.idCountry}>{element.name}</Option>);
+    });
+            
 }
 
- handleChange = (value) => {
-  console.log(`selected ${value}`);
-  console.log(this);
-    this.setState({
-      value : value
-  });   
 
+handleChange = (value) => {  
+    this.setState({
+      selectedvalue : value
+  });   
 }
 
  handleBlur() {
-  console.log('blur');
+ 
 }
 
 handleFocus() {
-  console.log('focus');
+ 
 }
-  render(){
 
+  render(){    
     
-let selectedCountry = {
-  valor : this.state.value,
-  auth : this.props.auth
-}
+    let selectedCountry = {
+      valor : this.state.selectedvalue,
+      auth : this.props.data.auth
+    }
     return (
         <div>
         <Select
+        labelInValue
         showSearch
         style={{ width: '100%' }}
         placeholder="Select a country"
@@ -53,11 +55,11 @@ let selectedCountry = {
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+        
       >
         {children}
     </Select>
-    {selectedCountry.valor !== "" ?   <CountryCard data={selectedCountry}/> : null} 
-  
+    {selectedCountry.valor.label !== "" ?   <CountryCard data={selectedCountry}/> : null}   
     </div>
     );
   }

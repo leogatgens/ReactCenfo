@@ -3,7 +3,7 @@ import {Wrapper} from '../../../estilos';
 import { TituloPrincipal } from '../../../components/estiloshtml';
 import { SelectCountry } from '../scenes/addwishlist/selectcountry';
 import { Tabs } from 'antd';
-
+import { GLOBALS} from '../../globals/globals-variables';
 import {LoadWishTripsList} from '../services/wishlisttrips'
 
 
@@ -17,15 +17,40 @@ function callback(key) {
  class Formularionewtrip extends React.Component {
   constructor(props){
     super(props);
-       
+    this.state = {
+      initLoading : "",                   
+      data : []       
+  };    
 }
+componentDidMount() {       
+  const serviceUrl = `${GLOBALS.rootAPI}/paises`;
 
+    fetch(serviceUrl)         
+      .then(res => {                
+         return res.json()
+        }
+      )
+      .then(              
+        (result) => {
+           this.setState({                
+              initLoading : false,
+              data :result
+          });
+        }            
+      ).catch(error => this.setState({ error : error.message }));
+      
+} 
 
     login() {
         this.props.auth.login();
     }
     render(){
         const { isAuthenticated } = this.props.auth;
+        const dependencias = {
+          auth : this.props.auth,
+          countries : this.state.data
+        }
+
     return( 
         <div>
         {
@@ -38,7 +63,7 @@ function callback(key) {
             <TabPane tab="Add to Wish List" key="2">
                 <Wrapper>
                         <TituloPrincipal>Escoga países por visitar</TituloPrincipal>
-                        <SelectCountry  auth = {this.props.auth}></SelectCountry>           
+                        <SelectCountry  data = {dependencias}></SelectCountry>           
                 </Wrapper>
             </TabPane>
 

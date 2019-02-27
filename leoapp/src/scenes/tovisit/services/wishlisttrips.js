@@ -12,42 +12,9 @@ class LoadWishTripsList extends React.Component {
           data : [],
           error : ""
         };      
-  }
+  }  
 
-  convertirFecha(fechatexto){
-    console.log(fechatexto);
-     if(typeof fechatexto == "string"){
-      var dateobj= new Date(fechatexto);     
-      var year = dateobj.getFullYear();  
-      var  locale = "en-us";
-      var month = dateobj.toLocaleString(locale, { month: "long" });
-      return month.toString().concat(" ").concat(year.toString());
-     }
-    
-    return fechatexto;
-   }
-
-
-   componentDidCatch(error, info) {
-
-    console.log("componentDidCatch");
-    console.log(info.componentStack);
-    console.log(error);
-  }
-    componentWillUnmount(){       
-    
-    }
-  
-    componentWillUpdate(){
-    
-    }
-
-    componentDidUpdate(){
-          
-    }
-
-
-    componentDidMount() {       
+  componentDidMount() {       
       const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.auth.userProfile}/wishlists`;
       var miInit = {               
         headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}` }          
@@ -68,17 +35,27 @@ class LoadWishTripsList extends React.Component {
             }            
           ).catch(error => this.setState({ error : error.message }));
           
-      } 
-    render(){
-       
-      
+  } 
+
+  convertirFecha(fechatexto){
+        
+         if(typeof fechatexto == "string"){
+          var dateobj= new Date(fechatexto);     
+          var year = dateobj.getFullYear();  
+          var  locale = "en-us";
+          var month = dateobj.toLocaleString(locale, { month: "long" });
+          return month.toString().concat(" ").concat(year.toString());
+         }
+        
+        return fechatexto;
+  }
+    
+    render(){  
         const {initLoading,error,data} = this.state;
-        console.log(data);
+        
         if(error){     
-            return <div>Lo sentimos algo salio mal:  {error}  </div>;
-       
-        }else {      
-         
+            return <div>Lo sentimos algo salio mal:  {error}  </div>;       
+        }else {
             return (
               <div>                          
                     <TituloPrincipal>Tus futuros viajes </TituloPrincipal>
@@ -98,16 +75,11 @@ class LoadWishTripsList extends React.Component {
                               />
                             </List.Item>                            
                           )}
-                        />                  
-
+                        />                
               </div>
                 );
-                }
-                
-     }
-    
-   
-     
+        }                
+    }
 }
 
 
