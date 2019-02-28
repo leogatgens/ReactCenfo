@@ -11,6 +11,7 @@ import {
   Collapse
 } from 'reactstrap';
 import './index.css';
+import { Card } from 'antd';
 
 class App extends Component {
   constructor(props){
@@ -57,13 +58,11 @@ class App extends Component {
     return (
       <>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Mis países por el mundo</NavbarBrand>
+          <NavbarBrand exact to="/home" className="nav-link" activeclassname="active" tag={RRNavLink} >Mis países por el mundo</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>        
-          <NavItem>
-                <NavLink exact to="/home" className="nav-link" activeclassname="active" tag={RRNavLink}>Home</NavLink>
-          </NavItem>
+       
             {
               !isAuthenticated() && (
             <NavItem>
@@ -77,6 +76,9 @@ class App extends Component {
             {
               isAuthenticated() && (
                 <>   
+                   <NavItem>
+                <NavLink exact to="/home" className="nav-link" activeclassname="active" tag={RRNavLink}>Home</NavLink>
+          </NavItem>
                 <NavItem>
                     <NavLink actvieclassname="active" to="/porvisitar" tag={RRNavLink}>Por visitar </NavLink>
                 </NavItem>
@@ -88,7 +90,8 @@ class App extends Component {
                 <NavLink actvieclassname="active" to="/" onClick={this.logout.bind(this)} tag={RRNavLink}>Logout </NavLink>
             </NavItem>
   
-       
+            
+  
                    </>
                 )
             }
@@ -97,7 +100,10 @@ class App extends Component {
           </Collapse>
 
           </Navbar>
+        
       </>
+      
+       
     );
   }
 }

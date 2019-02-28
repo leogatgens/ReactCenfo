@@ -12,7 +12,7 @@ const ContenedorCardsMobile = () => {
       style={{ width: 300 }}
       title="Registra tus viajes"
       cover={<img alt="example" src="https://yourtripssite.z19.web.core.windows.net/img/travel1.jpg"  />}
-      extra={<a href="https://ant.design/components/list/">More</a>}
+      extra={<a href="https://yourtripssite.z19.web.core.windows.net/misviajes">More</a>}
     >
       Registra tus viajes, las fechas y los lugares que visitados.
     </Card>
@@ -20,8 +20,8 @@ const ContenedorCardsMobile = () => {
       style={{ marginTop: 16, width: 300 }}
       type="inner"
       cover={<img alt="example" src="https://yourtripssite.z19.web.core.windows.net/img/traveltime.jpg" />}
-      title="Enumera tus proximos viajes"
-      extra={<a href="https://ant.design/components/list/">More</a>}
+      title="Registra tus próximos destinos"
+      extra={<a href="https://yourtripssite.z19.web.core.windows.net/porvisitar">More</a>}
     >
       Has una lista de tus viajes en el futuro, sin orden ni fecha solo posibles lugares.
     </Card>

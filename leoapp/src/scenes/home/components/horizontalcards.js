@@ -1,6 +1,10 @@
 import { Card, Col, Row,Icon,Avatar } from 'antd';
 import React from 'react';
+import { GLOBALS} from '../../globals/globals-variables';
 const { Meta } = Card;
+
+
+
 const ContenedorCardsBrowser = () => {
   return(
     <div style={{ background: '#F0F0DF', padding: '30px' }}>
@@ -10,7 +14,7 @@ const ContenedorCardsBrowser = () => {
     
       title="Registra tus viajes"
       cover={<img alt="example" src="https://yourtripssite.z19.web.core.windows.net/img/travel1.jpg"  />}
-      extra={<a href="https://ant.design/components/list/">More</a>}
+      extra={<a href={`${GLOBALS.rootWebSite}/trips`}>More</a>}
     >
       Registra tus viajes, las fechas y los lugares que visitados.
     </Card>
@@ -18,8 +22,8 @@ const ContenedorCardsBrowser = () => {
       <Col span={8}>
       <Card  
       cover={<img alt="example" src="https://yourtripssite.z19.web.core.windows.net/img/traveltime.jpg" />}
-      title="Enumera tus proximos viajes"
-      extra={<a href="https://ant.design/components/list/">More</a>}
+      title="Registra tus próximos destinos"
+      extra={<a href={`${GLOBALS.rootWebSite}/porvisitar`}>More</a>}
     >
       Has una lista de tus viajes en el futuro, sin orden ni fecha solo posibles lugares.
     </Card>
