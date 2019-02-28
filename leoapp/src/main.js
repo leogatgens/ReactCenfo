@@ -3,7 +3,7 @@ import './index.css';
 
 import { Route, Router  } from 'react-router-dom';
 import {ContenedorCards} from './scenes/home/scenes/homebydevice';
-import LoadMoreList from './scenes/mytrips/services/listartrips1';
+import TripsOption from './scenes/mytrips/services/mytrips';
 import {Formularionewtrip} from './scenes/tovisit/components/formularionewtrip';
 import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
@@ -25,7 +25,7 @@ export const makeMainRoutes = () => {
                     <Route path="/" render={(props) => <App auth={auth} {...props} />} />
                     <Route  path="/home" render={(props) => <ContenedorCards auth={auth} {...props} />} /> 
                     <Route  path="/porvisitar" render={(props) => <Formularionewtrip auth={auth} {...props} />}  />      
-                    <Route  path="/misviajes"  render={(props) => <LoadMoreList auth={auth} {...props} />} />  
+                    <Route  path="/misviajes"  render={(props) => <TripsOption auth={auth} {...props} />} />  
                     <Route path="/callback" render={(props) => {
                           handleAuthentication(props);
                           return <Callback {...props} /> 
