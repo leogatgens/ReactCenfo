@@ -1,6 +1,11 @@
-import { Card,Button,message } from 'antd';
+import { Card,Button,message,DatePicker } from 'antd';
 import React from 'react';
 import { GLOBALS} from '../../../globals/globals-variables';
+import moment from 'moment';
+
+const dateFormat = 'YYYY-MM-DD';
+const currentDate = moment();    
+let selectedDate = undefined;
 
 class CountryCard extends React.Component {
   constructor(props){
@@ -10,10 +15,16 @@ class CountryCard extends React.Component {
         error : ""       
     };           
   }
+   onChange(date, dateString) {
+    console.log(date, dateString);
+    selectedDate = date;
+  }
    AddItemToWishList = (props) =>{
+
+
     const newCountry = {
-      IdPais : 1,
-      Name : this.props.data.valor.label,
+      IdPais : this.props.data.valor.key,
+      DateTrip : selectedDate,
       ClientId : this.props.data.auth.userProfile
     };
 
@@ -30,27 +41,33 @@ class CountryCard extends React.Component {
       }
 
        fetch(serviceUrl, miInit )         
-        .then(res => {  
-                
-           return res.json()
+        .then(res => {    
+          if(res.ok)      
+          {
+          message.success('This is a message of success');
+          }else{
+            message.error('Try again');
+          }
           }
         )
-        .then(              
-          (result) => {     
-       
-            message.success('This is a message of success');
-          }            
-        ).catch(error => this.setState({ error : error.message }));           
+       .catch(
+          (error) =>{ 
+          console.log(error);
+          message.error('Try again');
+          }
+        );           
   }
   render(){ 
     const valor = this.props.data.valor; 
+    console.log(moment().calendar());
     return(
         <div>
         <Card title={valor.label} bordered={false} style={{ width: '100%', marginTop:10}}>
           <p>Continente: NOMBRE CONTINENTE  </p>
           <p>Capital: NOMBRE CAPITAL </p>
           <p>Click here for information about   <a href={"https://www.google.com/search?q=" + valor.label }   target="_blank" rel="noopener noreferrer">{valor.label}</a></p>
-        
+          <DatePicker defaultValue={moment(currentDate, dateFormat)} onChange={this.onChange} />
+          <span></span>
           <Button icon="plus" size="large" onClick={this.AddItemToWishList}>Add to list</Button>
         </Card>
       </div>

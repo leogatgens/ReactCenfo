@@ -69,10 +69,11 @@ class LoadWishTripsList extends React.Component {
                               <List.Item.Meta                    
                                 avatar={<Avatar src={item.urlFlag} />}
                                 title={<a href={"https://www.google.com/search?q=" + item.pais }   target="_blank" rel="noopener noreferrer">{item.pais}</a>}
-                                description={"Viaje planeado para " +  
+                                description={`Viaje a ${item.name} planeado en ` +  
                                 this.convertirFecha(item.annoDeLaVisita)                               
                               }                                
                               />
+                               <div><a>Eliminar</a></div>
                             </List.Item>                            
                           )}
                         />                

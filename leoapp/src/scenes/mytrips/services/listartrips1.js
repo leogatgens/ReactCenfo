@@ -4,7 +4,7 @@ import { List, Avatar,Tabs } from 'antd';
 import TextButtons from '../../../components/filtromenu';
 import { TituloPrincipal } from '../../../components/estiloshtml';
 import  PendingTimeLine  from '../components/timeline';
-
+import { GLOBALS} from '../../globals/globals-variables';
 
 const TabPane = Tabs.TabPane;
 class LoadMoreList extends React.Component {
@@ -37,44 +37,22 @@ class LoadMoreList extends React.Component {
      return paisesVisitados;
    }
 
-   componentDidCatch(error, info) {
-   
-    console.log("componentDidCatch");
-    console.log(info.componentStack);
-    console.log(error);
-  }
 
-componentWillUnmount(){       
-
-}
-    
-componentWillUpdate(){
-
-}
-
-  componentDidUpdate(){
-        
-  }
 
 
     componentDidMount() {
-   
-
+      const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.auth.userProfile}/trips`;
+      var miInit = {               
+        headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}` }          
+      }      
       
-       console.log(this);
-      
-        fetch("https://tripsapi20181211043716.azurewebsites.net/api/travelers/" + this.props.auth.userProfile  + "/trips",
-        {headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}`}
-
-      })        
-          .then(res => {      
-            console.log("then 1");
+        fetch(serviceUrl,miInit)      
+          .then(res => {                  
              return res.json();
             }
           )
           .then(              
-            (result) => {   
-              console.log("then 2");  
+            (result) => {                 
                this.setState({                
                   initLoading : false,
                   data : result
