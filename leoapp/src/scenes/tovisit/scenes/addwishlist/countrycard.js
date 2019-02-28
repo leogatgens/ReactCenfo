@@ -3,9 +3,9 @@ import React from 'react';
 import { GLOBALS} from '../../../globals/globals-variables';
 import moment from 'moment';
 
-const dateFormat = 'YYYY-MM-DD';
-const currentDate = moment();    
-let selectedDate = undefined;
+
+  
+let selectedDate = moment();
 
 class CountryCard extends React.Component {
   constructor(props){
@@ -16,12 +16,11 @@ class CountryCard extends React.Component {
     };           
   }
    onChange(date, dateString) {
-    console.log(date, dateString);
+     console.log(date);
+     console.log(dateString);
     selectedDate = date;
   }
    AddItemToWishList = (props) =>{
-
-
     const newCountry = {
       IdPais : this.props.data.valor.key,
       DateTrip : selectedDate,
@@ -66,7 +65,7 @@ class CountryCard extends React.Component {
           <p>Continente: NOMBRE CONTINENTE  </p>
           <p>Capital: NOMBRE CAPITAL </p>
           <p>Click here for information about   <a href={"https://www.google.com/search?q=" + valor.label }   target="_blank" rel="noopener noreferrer">{valor.label}</a></p>
-          <DatePicker defaultValue={moment(currentDate, dateFormat)} onChange={this.onChange} />
+          <DatePicker defaultValue={moment()} onChange={this.onChange} />
           <span></span>
           <Button icon="plus" size="large" onClick={this.AddItemToWishList}>Add to list</Button>
         </Card>

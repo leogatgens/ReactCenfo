@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { TituloPrincipal } from '../../../components/estiloshtml';
-import { List,Avatar } from 'antd';
+import { List,Avatar,Icon,message } from 'antd';
 import { GLOBALS} from '../../globals/globals-variables';
 
 class LoadWishTripsList extends React.Component {
@@ -49,6 +49,12 @@ class LoadWishTripsList extends React.Component {
         
         return fechatexto;
   }
+
+  remove = () => {
+    // Remove this TodoItem
+    //this.props.removeTodo(this.props.todo.index);
+    message.success('Eliminado');
+  };
     
     render(){  
         const {initLoading,error,data} = this.state;
@@ -59,13 +65,19 @@ class LoadWishTripsList extends React.Component {
             return (
               <div>                          
                     <TituloPrincipal>Tus futuros viajes </TituloPrincipal>
-                        <List
+                        <List 
                           itemLayout="horizontal"
                           style={{ marginLeft:10 }}
                           loading={initLoading}
                           dataSource={data}
                           renderItem={item => (
-                            <List.Item>
+                            <List.Item actions={[
+                              <Icon
+                                type="close-circle"
+                                theme="filled"
+                                onClick={this.remove}
+                              />
+                            ]}>
                               <List.Item.Meta                    
                                 avatar={<Avatar src={item.urlFlag} />}
                                 title={<a href={"https://www.google.com/search?q=" + item.pais }   target="_blank" rel="noopener noreferrer">{item.pais}</a>}
@@ -73,7 +85,7 @@ class LoadWishTripsList extends React.Component {
                                 this.convertirFecha(item.annoDeLaVisita)                               
                               }                                
                               />
-                               <div><a>Eliminar</a></div>
+                               <div>Content</div>
                             </List.Item>                            
                           )}
                         />                
