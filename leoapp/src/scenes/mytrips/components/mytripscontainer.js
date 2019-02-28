@@ -1,11 +1,12 @@
 import React from 'react';
-import {Wrapper} from '../../../estilos';
-import { TituloPrincipal } from '../../../components/estiloshtml';
-import { SelectCountry } from '../scenes/addwishlist/selectcountry';
+
+
 import { Tabs } from 'antd';
 import { GLOBALS} from '../../globals/globals-variables';
-import {LoadWishTripsList} from '../services/wishlisttrips'
 
+import TextButtons from '../../../components/filtromenu';
+import { TituloPrincipal } from '../../../components/estiloshtml';
+import  PendingTimeLine  from '../components/timeline';
 
 const TabPane = Tabs.TabPane;
 
@@ -14,7 +15,7 @@ function callback(key) {
 }
 
 
- class Formularionewtrip extends React.Component {
+ class TripsContainer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -47,28 +48,26 @@ componentDidMount() {
     }
     render(){
         const { isAuthenticated } = this.props.auth;
-        const dependencias = {
-          auth : this.props.auth,
-          countries : this.state.data
-        }
+       
 
     return( 
         <div>
         {
           isAuthenticated() && (
-            <Tabs defaultActiveKey="1" onChange={callback}>
-                
-            <TabPane tab="Wish list" key="1">
-            <LoadWishTripsList auth = {this.props.auth}></LoadWishTripsList>
-            </TabPane>
-            <TabPane tab="Add to Wish List" key="2">
-                <Wrapper>
-                        <TituloPrincipal>Escoga países por visitar</TituloPrincipal>
-                        <SelectCountry  data = {dependencias}></SelectCountry>           
-                </Wrapper>
+            <Tabs defaultActiveKey="1" onChange={this.callback}>
+            <TabPane tab="Historia de tus viajes" key="1">
+            <TituloPrincipal>El cronograma de tus viajes.</TituloPrincipal>                    
+                  <PendingTimeLine data={null}></PendingTimeLine>
             </TabPane>
 
-        </Tabs>
+            <TabPane tab="Lista países visitados" key="2">
+            <TextButtons></TextButtons>                                            
+                
+          
+                  
+                      />        
+            </TabPane>          
+        </Tabs>     
             )
         }
         {
@@ -91,4 +90,4 @@ componentDidMount() {
 
 
 
-export {Formularionewtrip};
+export {TripsContainer};

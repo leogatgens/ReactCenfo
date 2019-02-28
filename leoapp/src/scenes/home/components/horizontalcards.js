@@ -1,6 +1,6 @@
 import { Card, Col, Row,Icon,Avatar } from 'antd';
 import React from 'react';
-import { GLOBALS} from '../../globals/globals-variables';
+import { NavLink} from 'react-router-dom';
 const { Meta } = Card;
 
 
@@ -14,7 +14,7 @@ const ContenedorCardsBrowser = () => {
     
       title="Registra tus viajes"
       cover={<img alt="example" src="https://yourtripssite.z19.web.core.windows.net/img/travel1.jpg"  />}
-      extra={<a href={`${GLOBALS.rootWebSite}/trips`}>More</a>}
+      extra={<NavLink exact to="/misviajes" className="nav-link" activeclassname="active">More</NavLink>}
     >
       Registra tus viajes, las fechas y los lugares que visitados.
     </Card>
@@ -23,7 +23,7 @@ const ContenedorCardsBrowser = () => {
       <Card  
       cover={<img alt="example" src="https://yourtripssite.z19.web.core.windows.net/img/traveltime.jpg" />}
       title="Registra tus próximos destinos"
-      extra={<a href={`${GLOBALS.rootWebSite}/porvisitar`}>More</a>}
+      extra={<NavLink exact to="/porvisitar" className="nav-link" activeclassname="active">More</NavLink>}
     >
       Has una lista de tus viajes en el futuro, sin orden ni fecha solo posibles lugares.
     </Card>

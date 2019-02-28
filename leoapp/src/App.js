@@ -11,14 +11,14 @@ import {
   Collapse
 } from 'reactstrap';
 import './index.css';
-import { Card } from 'antd';
+
 
 class App extends Component {
   constructor(props){
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: true
    
     };
  
