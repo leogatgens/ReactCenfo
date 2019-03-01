@@ -20,10 +20,13 @@ function eliminarPaisesDuplicados(trips)
      return paisesVisitados;
    }
 const ContriesListTab = (props) =>{
-    console.log(props);
-    if(props.data === null)
+    
+    if(props.data.data === null)
         return  null; 
-    const paiseseSinduplicados =  eliminarPaisesDuplicados(props.data);
+
+
+        const {initLoading,error,data} = props.data.data;
+    const paiseseSinduplicados =  eliminarPaisesDuplicados(data);
     
         return (
             <div>
@@ -31,7 +34,7 @@ const ContriesListTab = (props) =>{
         <TituloPrincipal>Has visitado {paiseseSinduplicados.length} países</TituloPrincipal>
         <List style={{ marginLeft:10 }}
                     itemLayout="horizontal"
-                    loading={props.initLoading}
+                    loading={initLoading}
                     dataSource={paiseseSinduplicados}
                     renderItem={item => (
                         <List.Item>

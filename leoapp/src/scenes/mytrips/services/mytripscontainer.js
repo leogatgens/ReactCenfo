@@ -40,7 +40,7 @@ class TripsOption extends React.Component {
         }
       } 
     render(){
-      console.log("render");
+      
 
       const { isAuthenticated } = this.props.auth;
         const {initLoading,error,data} = this.state;
@@ -61,7 +61,7 @@ class TripsOption extends React.Component {
           <p>Lo sentimos algo salio mal:  {error.message}</p>  </div>;       
     }else { 
         return (
-                  <TripsContainer data={data}></TripsContainer>
+                  <TripsContainer data={this.state}></TripsContainer>
 
             );
       }                

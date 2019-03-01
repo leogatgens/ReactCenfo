@@ -18,11 +18,11 @@ class TabContainer extends React.Component {
     return(
       <Tabs defaultActiveKey="1" onChange={this.callback}>   
         <TabPane tab="Lista países visitados" key="1">
-           <ContriesListTab data={this.props.data}></ContriesListTab>
+           <ContriesListTab data={this.props}></ContriesListTab>
         </TabPane>      
         <TabPane tab="Historia de tus viajes" key="2">
           <TituloPrincipal>El cronograma de tus viajes.</TituloPrincipal>                    
-          <PendingTimeLine data={this.props.data}></PendingTimeLine>
+          <PendingTimeLine data={this.props}></PendingTimeLine>
         </TabPane>    
       </Tabs>  
 

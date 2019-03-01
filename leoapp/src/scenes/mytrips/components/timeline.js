@@ -17,13 +17,16 @@ convertirFecha(fechatexto){
 
 
   render() {
-    if(this.props.data === null)
+   
+    if(this.props.data.data === null)
       return  null; 
-    const indiceFinal = this.props.data.length -1;
+
+      const {data} = this.props.data.data;
+    const indiceFinal = data.length -1;
     return (
       <div style={{ marginLeft:10 }}>
         <Timeline>     
-        {this.props.data.map((item,i) => (  
+        {data.map((item,i) => (  
         
             this.PintarSegunIndice(i, item,indiceFinal)  
         )
