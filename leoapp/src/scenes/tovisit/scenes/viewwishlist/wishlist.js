@@ -1,8 +1,16 @@
- import { List,Avatar } from 'antd';
+ import { List,Avatar, message,Icon } from 'antd';
 import React from 'react';
 import { TituloPrincipal } from '../../../../components/estiloshtml';
 
-function convertirFecha(fechatexto){
+
+class  WishList extends React.Component {  
+  constructor(props){
+    super(props);
+    
+}  
+
+ convertirFecha = (fechatexto) =>{
+        
   if(typeof fechatexto == "string"){
    var dateobj= new Date(fechatexto);     
    var year = dateobj.getFullYear();  
@@ -14,26 +22,55 @@ function convertirFecha(fechatexto){
  return fechatexto;
 }
 
-const  WishList = (props) => {  
+
+
+  
+  remove = (e) => {
+  // Remove this TodoItem
+  //this.props.removeTodo(this.props.todo.index);
+
  
+  
+  
+  message.success('Deleted');
+  this.props.onRemoveTrip(e);
+
+}
+
+render(){
+  
+ const {initLoading,error, data} = this.props.data;
   return(
-     <div>
+    <div>                          
     <TituloPrincipal>Tus futuros viajes </TituloPrincipal>
-   
-    <List
-     style={{ marginLeft: 10 }}
-      itemLayout="horizontal"
-       loading={props.data.initloading}
-        dataSource={props.data.data}
-         renderItem={item => (<List.Item>
-      <List.Item.Meta 
-      avatar={<Avatar src={item.urlFlag} />} 
-      title={<a href={"https://www.google.com/search?q=" + item.pais} 
-      target="_blank" 
-      rel="noopener noreferrer">{item.pais}</a>} 
-      description={"Tu viaje fue realizado en " +  convertirFecha(item.annoDeLaVisita)} />
-    </List.Item>)} />
-  </div>);
+        <List 
+          itemLayout="horizontal"
+          style={{ marginLeft:10 }}
+          loading={initLoading}
+          dataSource={data}
+          renderItem={item => (
+            <List.Item actions={[
+              <Icon
+                key={item.idPais}
+                type="close-circle"
+                theme="filled"
+                onClick={this.remove.bind(this,item.idPais)}
+              />
+            ]}>
+              <List.Item.Meta                    
+                avatar={<Avatar src={item.urlFlag} />}
+                title={<a href={"https://www.google.com/search?q=" + item.pais }   target="_blank" rel="noopener noreferrer">{item.pais}</a>}
+                description={`Viaje a ${item.name} planeado en  ` +  
+                this.convertirFecha(item.annoDeLaVisita)                               
+              }                                
+              />
+               <div>Content</div>
+            </List.Item>                            
+          )}
+        />                
+</div>);
+
+}
 }
 
 

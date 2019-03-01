@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { TituloPrincipal } from '../../../components/estiloshtml';
+import { WishList } from '../scenes/viewwishlist/wishlist';
 import { List,Avatar,Icon,message } from 'antd';
 import { GLOBALS} from '../../globals/globals-variables';
 
@@ -37,59 +37,26 @@ class LoadWishTripsList extends React.Component {
           
   } 
 
-  convertirFecha(fechatexto){
-        
-         if(typeof fechatexto == "string"){
-          var dateobj= new Date(fechatexto);     
-          var year = dateobj.getFullYear();  
-          var  locale = "en-us";
-          var month = dateobj.toLocaleString(locale, { month: "long" });
-          return month.toString().concat(" ").concat(year.toString());
-         }
-        
-        return fechatexto;
+  handleRemoveItem = (value) =>{
+    console.log(this);
+    let listaNueva = this.state.data;
+    const filteredItems = listaNueva.filter(item => item.idPais !== value)
+      this.setState({                                                                    
+        data : filteredItems,
+        error : ""
+      });
+      console.log(filteredItems);
   }
-
-  remove = () => {
-    // Remove this TodoItem
-    //this.props.removeTodo(this.props.todo.index);
-    message.success('Eliminado');
-  };
+ 
     
     render(){  
-        const {initLoading,error,data} = this.state;
+     
         
-        if(error){     
-            return <div>Lo sentimos algo salio mal:  {error}  </div>;       
+        if(this.state.error){     
+            return <div>Lo sentimos algo salio mal:  {this.state.error}  </div>;       
         }else {
             return (
-              <div>                          
-                    <TituloPrincipal>Tus futuros viajes </TituloPrincipal>
-                        <List 
-                          itemLayout="horizontal"
-                          style={{ marginLeft:10 }}
-                          loading={initLoading}
-                          dataSource={data}
-                          renderItem={item => (
-                            <List.Item actions={[
-                              <Icon
-                                type="close-circle"
-                                theme="filled"
-                                onClick={this.remove}
-                              />
-                            ]}>
-                              <List.Item.Meta                    
-                                avatar={<Avatar src={item.urlFlag} />}
-                                title={<a href={"https://www.google.com/search?q=" + item.pais }   target="_blank" rel="noopener noreferrer">{item.pais}</a>}
-                                description={`Viaje a ${item.name} planeado en ` +  
-                                this.convertirFecha(item.annoDeLaVisita)                               
-                              }                                
-                              />
-                               <div>Content</div>
-                            </List.Item>                            
-                          )}
-                        />                
-              </div>
+            <WishList data = {this.state} onRemoveTrip={this.handleRemoveItem} ></WishList>
                 );
         }                
     }
