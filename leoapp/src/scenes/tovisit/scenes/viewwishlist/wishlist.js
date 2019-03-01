@@ -15,7 +15,7 @@ function convertirFecha(fechatexto){
 }
 
 const  WishList = (props) => {  
- console.log(props);
+ 
   return(
      <div>
     <TituloPrincipal>Tus futuros viajes </TituloPrincipal>

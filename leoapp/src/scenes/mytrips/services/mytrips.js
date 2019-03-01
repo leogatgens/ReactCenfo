@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import TabContainer from '../components/mytripscontainer'
+import TripsContainer from '../components/mytripscontainer'
 import { GLOBALS} from '../../globals/globals-variables';
 
 
@@ -14,13 +14,19 @@ class TripsOption extends React.Component {
         };      
   } 
 
-    componentDidMount() {
+  login() {
+    this.props.auth.login();
+  }
+    
+  componentDidMount() {
+    if(this.props.auth.isAuthenticated()){
+
+   
       const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.auth.userProfile}/trips`;
       var miInit = {               
         headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}` }          
-      }      
-      
-        fetch(serviceUrl,miInit)      
+      }     
+      fetch(serviceUrl,miInit)      
           .then(res => {                  
              return res.json();
             }
@@ -33,19 +39,33 @@ class TripsOption extends React.Component {
               });
             }            
           ).catch(error => this.setState({ error : error.message }));
-      
+        }
       } 
     render(){
-        const {initLoading,error,data} = this.state;
-        if(error){     
-            return <div>Lo sentimos algo salio mal:  {error.message}  </div>;       
-        }else { 
-            return (
-                      <TabContainer data={data}></TabContainer>
+      console.log("render");
 
-                );
-          }                
-     }
+      const { isAuthenticated } = this.props.auth;
+        const {initLoading,error,data} = this.state;
+    if(isAuthenticated() == false)
+    {
+        return( <div> 
+                <h4>
+                    You are not logged in! Please{' '}
+                    <button   style={{ cursor: 'pointer' }} onClick={this.login.bind(this)}>
+                      Log In
+                    </button >
+                    {' '}to continue.
+                  </h4>
+            </div>);
+    }else if(error){     
+        return <div>Lo sentimos algo salio mal:  {error.message}  </div>;       
+    }else { 
+        return (
+                  <TripsContainer data={data}></TripsContainer>
+
+            );
+      }                
+  }
 
 }
 
