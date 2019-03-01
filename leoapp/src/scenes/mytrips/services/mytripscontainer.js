@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import TripsContainer from '../components/mytripscontainer'
+import TripsContainer from '../components/mytripsPage'
 import { GLOBALS} from '../../globals/globals-variables';
 
 
@@ -19,9 +19,7 @@ class TripsOption extends React.Component {
   }
     
   componentDidMount() {
-    if(this.props.auth.isAuthenticated()){
-
-   
+    if(this.props.auth.isAuthenticated()){   
       const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.auth.userProfile}/trips`;
       var miInit = {               
         headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}` }          
@@ -46,7 +44,7 @@ class TripsOption extends React.Component {
 
       const { isAuthenticated } = this.props.auth;
         const {initLoading,error,data} = this.state;
-    if(isAuthenticated() == false)
+    if(isAuthenticated() === false)
     {
         return( <div> 
                 <h4>
@@ -58,7 +56,9 @@ class TripsOption extends React.Component {
                   </h4>
             </div>);
     }else if(error){     
-        return <div>Lo sentimos algo salio mal:  {error.message}  </div>;       
+        return <div>
+             <TripsContainer data={null}></TripsContainer>
+          <p>Lo sentimos algo salio mal:  {error.message}</p>  </div>;       
     }else { 
         return (
                   <TripsContainer data={data}></TripsContainer>

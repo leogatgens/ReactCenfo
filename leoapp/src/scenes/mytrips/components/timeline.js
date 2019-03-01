@@ -17,7 +17,8 @@ convertirFecha(fechatexto){
 
 
   render() {
- 
+    if(this.props.data === null)
+      return  null; 
     const indiceFinal = this.props.data.length -1;
     return (
       <div style={{ marginLeft:10 }}>
