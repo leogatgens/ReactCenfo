@@ -24,17 +24,10 @@ class  WishList extends React.Component {
 
 
 
-  
-  remove = (e) => {
-  // Remove this TodoItem
-  //this.props.removeTodo(this.props.todo.index);
+  remove = (CountryId) => {
 
- 
-  
-  
-  message.success('Deleted');
-  this.props.onRemoveTrip(e);
-
+          this.props.onRemoveTrip(CountryId);
+       
 }
 
 render(){
@@ -54,7 +47,7 @@ render(){
                 key={item.idPais}
                 type="close-circle"
                 theme="filled"
-                onClick={this.remove.bind(this,item.idPais)}
+                onClick={this.remove.bind(this,item.idTrip)}
               />
             ]}>
               <List.Item.Meta                    
@@ -64,7 +57,7 @@ render(){
                 this.convertirFecha(item.annoDeLaVisita)                               
               }                                
               />
-               <div>Content</div>
+           
             </List.Item>                            
           )}
         />                

@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { WishList } from '../scenes/viewwishlist/wishlist';
-import { List,Avatar,Icon,message } from 'antd';
+import { message } from 'antd';
 import { GLOBALS} from '../../globals/globals-variables';
 
 class LoadWishTripsList extends React.Component {
@@ -38,17 +38,48 @@ class LoadWishTripsList extends React.Component {
   } 
 
   handleRemoveItem = (value) =>{
+
     console.log(this);
-    let listaNueva = this.state.data;
-    const filteredItems = listaNueva.filter(item => item.idPais !== value)
-      this.setState({                                                                    
-        data : filteredItems,
-        error : ""
-      });
-      console.log(filteredItems);
+    const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.auth.userProfile}/wishlists/${value}`;
+    var miInit = {               
+      headers : {
+        Authorization : `Bearer ${this.props.auth.getAccessToken()}`   
+      },
+      method: 'DELETE'     
+    }
+
+     fetch(serviceUrl, miInit )         
+      .then(res => {    
+        if(res.ok)      
+        {
+          message.success('Deleted');
+          this.refreshData(value);
+        }else{
+          message.error('Try again');
+        }
+        }
+      )
+     .catch(
+        (error) =>{ 
+        console.log(error);
+        message.error('Try again');
+        }
+     )
+  
+   
   }
  
     
+  refreshData(value) {
+    let listaNueva = this.state.data;
+    const filteredItems = listaNueva.filter(item => item.idTrip !== value);
+    this.setState({
+      data: filteredItems,
+      error: ""
+    });
+    console.log(filteredItems);
+  }
+
     render(){  
      
         
