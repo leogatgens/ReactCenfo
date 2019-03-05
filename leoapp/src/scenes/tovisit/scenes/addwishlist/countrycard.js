@@ -13,17 +13,17 @@ class CountryCard extends React.Component {
    onChange(date) { 
     selectedDate = date;
   }
-   AddItemToWishList = (props) =>{
-     
+   AddItemToWishList = () =>{
+  
     const newCountry = {
-      IdPais : this.props.data.valor.key,
+      IdPais : this.props.valor.key,
       DateTrip : selectedDate,
-      ClientId : this.props.data.auth.userProfile
+      ClientId : this.props.props.data.data.data.auth.userProfile
     };  
     const serviceUrl = `${GLOBALS.rootAPI}/travelers/${newCountry.ClientId}/wishlists`;
       var miInit = {               
         headers : {
-          Authorization : `Bearer ${this.props.data.auth.getAccessToken()}`,
+          Authorization : `Bearer ${this.props.props.data.data.data.auth.getAccessToken()}`,
           'Accept': 'application/json',  
           'Content-Type': 'application/json'
         },
@@ -35,8 +35,9 @@ class CountryCard extends React.Component {
         .then(res => {    
           if(res.ok)      
           {
-           message.success('successfully added');           
-           this.props.OnAddedItem();
+           message.success('successfully added');   
+            
+           this.props.props.data.onAddItem();
 
           }else{
             message.error('Try again');
@@ -51,7 +52,8 @@ class CountryCard extends React.Component {
         );           
   }
   render(){ 
-    const valor = this.props.data.valor;     
+  
+    const valor = this.props.valor;     
     return(
         <div>
         <Card title={valor.label} bordered={false} style={{ width: '100%', marginTop:10}}>

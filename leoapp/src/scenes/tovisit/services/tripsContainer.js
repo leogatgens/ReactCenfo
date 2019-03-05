@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs } from 'antd';
+import { Tabs,message } from 'antd';
 import { GLOBALS} from '../../globals/globals-variables';
 import TabsView from '../scenes/tabsview'
 
@@ -10,8 +10,10 @@ const TabPane = Tabs.TabPane;
   constructor(props){
     super(props);
     this.state = {
-      initLoading : true,                   
+      initLoading : true,  
+      initLoading2 : true,                 
       datacountries : [],
+      datawishlist : [],
       error : ''       
   };    
 }
@@ -28,9 +30,32 @@ callback = () => {
  
 }
 
-componentDidMount() {     
-  this.ListAllCountries();   
+componentDidMount() {   
+  this.ObtainWishList();   
+  this.ListAllCountries();
+ 
 } 
+
+
+ObtainWishList() {
+
+  const parent = this.props;
+  const serviceUrl = `${GLOBALS.rootAPI}/travelers/${parent.auth.userProfile}/wishlists`;
+  var miInit = {
+    headers: { Authorization: `Bearer ${parent.auth.getAccessToken()}` }
+  };
+  fetch(serviceUrl, miInit)
+    .then(res => {
+      return res.json();
+    })
+    .then((result) => {
+      this.setState({
+        initLoading: false,
+        datawishlist: result
+      });
+    }).catch(error => this.setState({ error: error.message }));
+}
+
 
    ListAllCountries =()=>{
      const serviceUrl = `${GLOBALS.rootAPI}/paises`;
@@ -50,26 +75,67 @@ componentDidMount() {
         this.props.auth.login();
     }
 
-    handleAddedCountry =() => {
-      //alert("Se agrego un nuevo país");
-      
-      this.setState({                
-        recargarLista : true  
-      }); 
+    handleAddedCountry =() => { 
+      this.ObtainWishList();
+  }
+
+
+  handleRemoveItem = (value) =>{  
+   
+    const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.auth.userProfile}/wishlists/${value}`;
+    var miInit = {               
+      headers : {
+        Authorization : `Bearer ${this.props.auth.getAccessToken()}`   
+      },
+      method: 'DELETE'     
+    }
+
+     fetch(serviceUrl, miInit )         
+      .then(res => {    
+        if(res.ok)      
+        {
+          message.success('Deleted');
+          this.refreshData(value);
+        }else{
+          message.error('Try again');
+        }
+        }
+      )
+     .catch(
+        (error) =>{ 
+        console.log(error);
+        message.error('Try again');
+        }
+     )
+  
+   
+  }
+ 
+
+    
+  refreshData(value) {
+    let listaNueva = this.state.datawishlist;
+    const filteredItems = listaNueva.filter(item => item.idTrip !== value);
+    this.setState({
+      datawishlist: filteredItems,
+      error: ""
+    });
+    
   }
     render(){
         const { isAuthenticated } = this.props.auth;
        
         const dependencias ={
             data : this.props,
-            countries : this.state.datacountries
+            countries : this.state.datacountries,
+            wishlist : this.state.datawishlist
         };
     return(  
     
         <div>
         {
           isAuthenticated() && (
-          <TabsView data={dependencias}></TabsView>
+          <TabsView data={dependencias} onDeleteItem={this.handleRemoveItem} onAddItem={this.handleAddedCountry}></TabsView>
             )
         }
         {
