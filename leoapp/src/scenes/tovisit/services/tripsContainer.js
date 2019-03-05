@@ -3,15 +3,11 @@ import { Tabs,message } from 'antd';
 import { GLOBALS} from '../../globals/globals-variables';
 import TabsView from '../scenes/tabsview'
 
-
-const TabPane = Tabs.TabPane;
-
  class TripsContainer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      initLoading : true,  
-      initLoading2 : true,                 
+      initLoading : true,        
       datacountries : [],
       datawishlist : [],
       error : ''       
@@ -37,24 +33,24 @@ componentDidMount() {
 } 
 
 
-ObtainWishList() {
+  ObtainWishList() {
 
-  const parent = this.props;
-  const serviceUrl = `${GLOBALS.rootAPI}/travelers/${parent.auth.userProfile}/wishlists`;
-  var miInit = {
-    headers: { Authorization: `Bearer ${parent.auth.getAccessToken()}` }
-  };
-  fetch(serviceUrl, miInit)
-    .then(res => {
-      return res.json();
-    })
-    .then((result) => {
-      this.setState({
-        initLoading: false,
-        datawishlist: result
-      });
-    }).catch(error => this.setState({ error: error.message }));
-}
+    const parent = this.props;
+    const serviceUrl = `${GLOBALS.rootAPI}/travelers/${parent.auth.userProfile}/wishlists`;
+    var miInit = {
+      headers: { Authorization: `Bearer ${parent.auth.getAccessToken()}` }
+    };
+    fetch(serviceUrl, miInit)
+      .then(res => {
+        return res.json();
+      })
+      .then((result) => {
+        this.setState({
+          initLoading: false,
+          datawishlist: result
+        });
+      }).catch(error => this.setState({ error: error.message }));
+  }
 
 
    ListAllCountries =()=>{
@@ -64,8 +60,7 @@ ObtainWishList() {
          return res.json();
        })
        .then((result) => {
-         this.setState({
-           initLoading: false,
+         this.setState({           
            datacountries: result
          });
        }).catch(error => this.setState({ error: error.message }));
@@ -122,13 +117,16 @@ ObtainWishList() {
     });
     
   }
+
+
+
     render(){
         const { isAuthenticated } = this.props.auth;
        
         const dependencias ={
             data : this.props,
-            countries : this.state.datacountries,
-            wishlist : this.state.datawishlist
+            state : this.state
+            
         };
     return(  
     

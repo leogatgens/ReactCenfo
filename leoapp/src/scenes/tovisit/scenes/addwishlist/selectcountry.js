@@ -17,8 +17,8 @@ class SelectCountry extends React.Component {
     };  
     
     children.length = 0;
-    
-    this.props.data.data.countries.forEach(element => {
+    console.log(this);
+    this.props.data.data.state.datacountries.forEach(element => {
     children.push(<Option key={element.idCountry}>{element.name}</Option>);
     });
             

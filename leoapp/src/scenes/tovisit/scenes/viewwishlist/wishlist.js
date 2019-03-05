@@ -18,19 +18,15 @@ class  WishList extends React.Component {
  
  return fechatexto;
 }
-
-
-
   remove = (CountryId) => {  
     this.props.data.onDeleteItem(CountryId);       
   }
 
 render(){
 
- const {initLoading, wishlist} = this.props.data.data;
- console.log("leoeleo");
- console.log(initLoading);
- console.log(this);
+ const {initLoading, datawishlist} = this.props.data.data.state;
+ console.log("Rendering");
+
   return(
     <div>                          
     <TituloPrincipal>Tus futuros viajes </TituloPrincipal>
@@ -38,7 +34,7 @@ render(){
           itemLayout="horizontal"
           style={{ marginLeft:10 }}
           loading={initLoading}
-          dataSource={wishlist}
+          dataSource={datawishlist}
           renderItem={item => (
             <List.Item actions={[
               <Icon
