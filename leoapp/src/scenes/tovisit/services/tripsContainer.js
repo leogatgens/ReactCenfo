@@ -15,7 +15,7 @@ import TabsView from '../scenes/tabsview'
 }
 
 componentDidUpdate(prevProps) {
-  console.log(prevProps);
+  
   // Typical usage (don't forget to compare props):
   // if (this.props.filtro !== prevProps.filtro) {
   //   this.listarautomovilespormarca(this.props.filtro);
