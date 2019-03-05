@@ -4,7 +4,7 @@ import { WishList } from '../scenes/viewwishlist/wishlist';
 import { message } from 'antd';
 import { GLOBALS} from '../../globals/globals-variables';
 
-class LoadWishTripsList extends React.Component {
+class WishListContainer extends React.Component {
   constructor(props){
         super(props);
         this.state = { 
@@ -22,11 +22,12 @@ class LoadWishTripsList extends React.Component {
           
   } 
 
-  handleRemoveItem = (value) =>{    
-    const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.auth.userProfile}/wishlists/${value}`;
+  handleRemoveItem = (value) =>{  
+      
+    const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.data.data.auth.userProfile}/wishlists/${value}`;
     var miInit = {               
       headers : {
-        Authorization : `Bearer ${this.props.auth.getAccessToken()}`   
+        Authorization : `Bearer ${this.props.data.data.auth.getAccessToken()}`   
       },
       method: 'DELETE'     
     }
@@ -55,9 +56,11 @@ class LoadWishTripsList extends React.Component {
 
     
   ObtainWishList() {
-    const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.auth.userProfile}/wishlists`;
+    console.log(this);
+    const parent = this.props.data.data;
+    const serviceUrl = `${GLOBALS.rootAPI}/travelers/${parent.auth.userProfile}/wishlists`;
     var miInit = {
-      headers: { Authorization: `Bearer ${this.props.auth.getAccessToken()}` }
+      headers: { Authorization: `Bearer ${parent.auth.getAccessToken()}` }
     };
     fetch(serviceUrl, miInit)
       .then(res => {
@@ -95,4 +98,4 @@ class LoadWishTripsList extends React.Component {
 }
 
 
-export {LoadWishTripsList};
+export default WishListContainer;

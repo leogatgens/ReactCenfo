@@ -8,15 +8,13 @@ let selectedDate = moment();
 class CountryCard extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-        value : "",                   
-        error : ""       
-    };           
+            
   }
-   onChange(date, dateString) { 
+   onChange(date) { 
     selectedDate = date;
   }
    AddItemToWishList = (props) =>{
+     
     const newCountry = {
       IdPais : this.props.data.valor.key,
       DateTrip : selectedDate,

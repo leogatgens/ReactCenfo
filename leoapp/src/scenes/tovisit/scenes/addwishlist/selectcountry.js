@@ -7,6 +7,7 @@ const children = [];
 class SelectCountry extends React.Component {
   constructor(props){
     super(props);
+
     this.state = {
         selectedvalue : {
             key : -1,
@@ -16,7 +17,8 @@ class SelectCountry extends React.Component {
     };  
     
     children.length = 0;
-    this.props.data.countries.forEach(element => {
+    console.log(this);
+    this.props.data.data.countries.forEach(element => {
     children.push(<Option key={element.idCountry}>{element.name}</Option>);
     });
             
@@ -28,15 +30,15 @@ handleChange = (value) => {
 }
 
 HandleAddedItem = () =>{
-
+console.log("selectcountry.HandleAddedItem");
   this.props.onAddedCountry();
 }
 
 render(){    
-    
+    console.log(this);
     let selectedCountry = {
       valor : this.state.selectedvalue,
-      auth : this.props.data.auth
+      auth : this.props.data.data.data.auth
     }
     return (
         <div>

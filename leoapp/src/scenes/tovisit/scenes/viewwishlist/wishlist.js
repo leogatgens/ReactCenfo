@@ -28,7 +28,7 @@ class  WishList extends React.Component {
 }
 
 render(){
-  
+  console.log(this);
  const {initLoading, data} = this.props.data;
   return(
     <div>                          
@@ -41,7 +41,7 @@ render(){
           renderItem={item => (
             <List.Item actions={[
               <Icon
-                key={item.idPais}
+                key={item.idTrip}
                 type="close-circle"
                 theme="filled"
                 onClick={this.remove.bind(this,item.idTrip)}

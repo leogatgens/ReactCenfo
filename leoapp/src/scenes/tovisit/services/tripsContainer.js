@@ -1,21 +1,18 @@
 import React from 'react';
-import {Wrapper} from '../../../estilos';
-import { TituloPrincipal } from '../../../components/estiloshtml';
-import { SelectCountry } from '../scenes/addwishlist/selectcountry';
-import { Tabs,message } from 'antd';
+import { Tabs } from 'antd';
 import { GLOBALS} from '../../globals/globals-variables';
-import {LoadWishTripsList} from './wishlisttrips'
+import TabsView from '../scenes/tabsview'
 
 
 const TabPane = Tabs.TabPane;
 
- class Formularionewtrip extends React.Component {
+ class TripsContainer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      initLoading : "",                   
-      data : [],
-      recargarLista : false       
+      initLoading : true,                   
+      datacountries : [],
+      error : ''       
   };    
 }
 
@@ -44,7 +41,7 @@ componentDidMount() {
        .then((result) => {
          this.setState({
            initLoading: false,
-           data: result
+           datacountries: result
          });
        }).catch(error => this.setState({ error: error.message }));
    }
@@ -62,27 +59,17 @@ componentDidMount() {
   }
     render(){
         const { isAuthenticated } = this.props.auth;
-        const dependencias = {
-          auth : this.props.auth,
-          countries : this.state.data
-        }
-     
+       
+        const dependencias ={
+            data : this.props,
+            countries : this.state.datacountries
+        };
     return(  
+    
         <div>
         {
           isAuthenticated() && (
-           <Tabs defaultActiveKey="1" onChange={this.callback}>                
-                <TabPane tab="Wish list" key="1">
-                  <LoadWishTripsList auth = {dependencias.auth}></LoadWishTripsList>
-                </TabPane>
-                <TabPane tab="Add to Wish List" key="2">
-                  <Wrapper>
-                          <TituloPrincipal>Escoga países por visitar</TituloPrincipal>
-                          <SelectCountry  data = {dependencias} onAddedCountry = {this.handleAddedCountry} ></SelectCountry>           
-                  </Wrapper>
-                </TabPane>
-
-            </Tabs>
+          <TabsView data={dependencias}></TabsView>
             )
         }
         {
@@ -101,4 +88,4 @@ componentDidMount() {
 }
 }
 
-export {Formularionewtrip};
+export {TripsContainer};

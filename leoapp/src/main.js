@@ -4,7 +4,7 @@ import './index.css';
 import { Route, Router  } from 'react-router-dom';
 import {ContenedorCards} from './scenes/home/scenes/homebydevice';
 import TripsOption from './scenes/mytrips/services/mytripscontainer';
-import {Formularionewtrip} from './scenes/tovisit/services/formularionewtrip';
+import {TripsContainer} from './scenes/tovisit/services/tripsContainer';
 import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import history from './history';
@@ -24,7 +24,7 @@ export const makeMainRoutes = () => {
                 <div>
                     <Route path="/" render={(props) => <App auth={auth} {...props} />} />
                     <Route  path="/home" render={(props) => <ContenedorCards auth={auth} {...props} />} /> 
-                    <Route  path="/porvisitar" render={(props) => <Formularionewtrip auth={auth} {...props} />}  />      
+                    <Route  path="/porvisitar" render={(props) => <TripsContainer auth={auth} {...props} />}  />      
                     <Route  path="/misviajes"  render={(props) => <TripsOption auth={auth} {...props} />} />  
                     <Route path="/callback" render={(props) => {
                           handleAuthentication(props);
