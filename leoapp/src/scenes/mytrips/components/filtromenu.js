@@ -16,22 +16,12 @@ function TextButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Button className={classes.button}>TIMELINE</Button>
+      <Button className={classes.button}>Add country</Button>
       <Button color="primary" className={classes.button}>
         Ordernar
       </Button>    
-      <input
-        accept="image/*"
-        className={classes.input}
-        id="flat-button-file"
-        multiple
-        type="file"
-      />
-      <label htmlFor="flat-button-file">
-        <Button component="span" className={classes.button}>
-          Upload
-        </Button>
-      </label>
+     
+    
     </div>
   );
 }

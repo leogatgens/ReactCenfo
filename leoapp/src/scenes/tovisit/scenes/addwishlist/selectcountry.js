@@ -21,23 +21,18 @@ class SelectCountry extends React.Component {
     });
             
 }
-
-
 handleChange = (value) => {  
     this.setState({
       selectedvalue : value
   });   
 }
 
- handleBlur() {
- 
+HandleAddedItem = () =>{
+
+  this.props.onAddedCountry();
 }
 
-handleFocus() {
- 
-}
-
-  render(){    
+render(){    
     
     let selectedCountry = {
       valor : this.state.selectedvalue,
@@ -59,7 +54,7 @@ handleFocus() {
       >
         {children}
     </Select>
-    {selectedCountry.valor.label !== "" ?   <CountryCard data={selectedCountry}/> : null}   
+    {selectedCountry.valor.label !== "" ?   <CountryCard data={selectedCountry} OnAddedItem={this.HandleAddedItem}/> : null}   
     </div>
     );
   }

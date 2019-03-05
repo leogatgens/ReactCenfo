@@ -4,7 +4,7 @@ import './index.css';
 import { Route, Router  } from 'react-router-dom';
 import {ContenedorCards} from './scenes/home/scenes/homebydevice';
 import TripsOption from './scenes/mytrips/services/mytripscontainer';
-import {Formularionewtrip} from './scenes/tovisit/components/formularionewtrip';
+import {Formularionewtrip} from './scenes/tovisit/services/formularionewtrip';
 import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import history from './history';

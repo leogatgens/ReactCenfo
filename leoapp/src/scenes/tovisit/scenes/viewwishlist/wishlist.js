@@ -1,13 +1,10 @@
- import { List,Avatar, message,Icon } from 'antd';
+ import { List,Avatar,Icon } from 'antd';
 import React from 'react';
 import { TituloPrincipal } from '../../../../components/estiloshtml';
 
 
 class  WishList extends React.Component {  
-  constructor(props){
-    super(props);
-    
-}  
+
 
  convertirFecha = (fechatexto) =>{
         
@@ -32,7 +29,7 @@ class  WishList extends React.Component {
 
 render(){
   
- const {initLoading,error, data} = this.props.data;
+ const {initLoading, data} = this.props.data;
   return(
     <div>                          
     <TituloPrincipal>Tus futuros viajes </TituloPrincipal>

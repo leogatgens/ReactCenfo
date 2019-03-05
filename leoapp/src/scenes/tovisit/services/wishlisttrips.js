@@ -11,35 +11,18 @@ class LoadWishTripsList extends React.Component {
           initLoading: true,                                          
           data : [],
           error : ""
+    
         };      
   }  
 
+
+
   componentDidMount() {       
-      const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.auth.userProfile}/wishlists`;
-      var miInit = {               
-        headers : { Authorization : `Bearer ${this.props.auth.getAccessToken()}` }          
-      }
-        fetch(serviceUrl, miInit)         
-          .then(res => {     
-               
-             return res.json()
-            }
-          )
-          .then(              
-            (result) => {     
-              
-               this.setState({                
-                  initLoading : false,
-                  data :result
-              });
-            }            
-          ).catch(error => this.setState({ error : error.message }));
+      this.ObtainWishList();
           
   } 
 
-  handleRemoveItem = (value) =>{
-
-    console.log(this);
+  handleRemoveItem = (value) =>{    
     const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.auth.userProfile}/wishlists/${value}`;
     var miInit = {               
       headers : {
@@ -69,7 +52,25 @@ class LoadWishTripsList extends React.Component {
    
   }
  
+
     
+  ObtainWishList() {
+    const serviceUrl = `${GLOBALS.rootAPI}/travelers/${this.props.auth.userProfile}/wishlists`;
+    var miInit = {
+      headers: { Authorization: `Bearer ${this.props.auth.getAccessToken()}` }
+    };
+    fetch(serviceUrl, miInit)
+      .then(res => {
+        return res.json();
+      })
+      .then((result) => {
+        this.setState({
+          initLoading: false,
+          data: result
+        });
+      }).catch(error => this.setState({ error: error.message }));
+  }
+
   refreshData(value) {
     let listaNueva = this.state.data;
     const filteredItems = listaNueva.filter(item => item.idTrip !== value);
@@ -77,7 +78,7 @@ class LoadWishTripsList extends React.Component {
       data: filteredItems,
       error: ""
     });
-    console.log(filteredItems);
+    
   }
 
     render(){  
@@ -87,7 +88,7 @@ class LoadWishTripsList extends React.Component {
             return <div>Lo sentimos algo salio mal:  {this.state.error}  </div>;       
         }else {
             return (
-            <WishList data = {this.state} onRemoveTrip={this.handleRemoveItem} ></WishList>
+            <WishList data = {this.state} onRemoveTrip={this.handleRemoveItem}></WishList>
                 );
         }                
     }

@@ -7,11 +7,8 @@ import  ContriesListTab  from './visitedcountries';
 
 const TabPane = Tabs.TabPane;
 
-class TabContainer extends React.Component {
-  constructor(props){
-    super(props);  
-     
-} 
+class TabsControl extends React.Component {
+
 
   render(){
 
@@ -31,4 +28,4 @@ class TabContainer extends React.Component {
 }
 
 
-export default TabContainer;
+export default TabsControl;

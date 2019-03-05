@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import TripsContainer from '../components/mytripsPage'
+import TabsControl from '../components/mytripsPage'
 import { GLOBALS} from '../../globals/globals-variables';
 
 
@@ -43,7 +43,7 @@ class TripsOption extends React.Component {
       
 
       const { isAuthenticated } = this.props.auth;
-        const {initLoading,error,data} = this.state;
+        const {error} = this.state;
     if(isAuthenticated() === false)
     {
         return( <div> 
@@ -57,11 +57,11 @@ class TripsOption extends React.Component {
             </div>);
     }else if(error){     
         return <div>
-             <TripsContainer data={null}></TripsContainer>
+             <TabsControl data={null}></TabsControl>
           <p>Lo sentimos algo salio mal:  {error.message}</p>  </div>;       
     }else { 
         return (
-                  <TripsContainer data={this.state}></TripsContainer>
+                  <TabsControl data={this.state}></TabsControl>
 
             );
       }                

@@ -1,5 +1,5 @@
-import { List, Avatar,Tabs } from 'antd';
-import TextButtons from '../../../components/filtromenu';
+import { List, Avatar } from 'antd';
+import TextButtons from './filtromenu';
 import React from 'react';
 import { TituloPrincipal } from '../../../components/estiloshtml';
 
@@ -25,7 +25,7 @@ const ContriesListTab = (props) =>{
         return  null; 
 
 
-        const {initLoading,error,data} = props.data.data;
+        const {initLoading,data} = props.data.data;
     const paiseseSinduplicados =  eliminarPaisesDuplicados(data);
     
         return (

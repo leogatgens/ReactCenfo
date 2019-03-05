@@ -3,8 +3,6 @@ import React from 'react';
 import { GLOBALS} from '../../../globals/globals-variables';
 import moment from 'moment';
 
-
-  
 let selectedDate = moment();
 
 class CountryCard extends React.Component {
@@ -15,9 +13,7 @@ class CountryCard extends React.Component {
         error : ""       
     };           
   }
-   onChange(date, dateString) {
-     console.log(date);
-     console.log(dateString);
+   onChange(date, dateString) { 
     selectedDate = date;
   }
    AddItemToWishList = (props) =>{
@@ -25,9 +21,7 @@ class CountryCard extends React.Component {
       IdPais : this.props.data.valor.key,
       DateTrip : selectedDate,
       ClientId : this.props.data.auth.userProfile
-    };
-
-  
+    };  
     const serviceUrl = `${GLOBALS.rootAPI}/travelers/${newCountry.ClientId}/wishlists`;
       var miInit = {               
         headers : {
@@ -43,7 +37,9 @@ class CountryCard extends React.Component {
         .then(res => {    
           if(res.ok)      
           {
-          message.success('This is a message of success');
+           message.success('successfully added');           
+           this.props.OnAddedItem();
+
           }else{
             message.error('Try again');
           }
@@ -57,8 +53,7 @@ class CountryCard extends React.Component {
         );           
   }
   render(){ 
-    const valor = this.props.data.valor; 
-    console.log(moment().calendar());
+    const valor = this.props.data.valor;     
     return(
         <div>
         <Card title={valor.label} bordered={false} style={{ width: '100%', marginTop:10}}>
