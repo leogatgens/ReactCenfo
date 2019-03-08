@@ -57,12 +57,12 @@ class CountryCard extends React.Component {
     return(
         <div>
         <Card title={valor.label} bordered={false} style={{ width: '100%', marginTop:10}}>
-          <p>Continente: NOMBRE CONTINENTE  </p>
-          <p>Capital: NOMBRE CAPITAL </p>
-          <p>Click here for information about   <a href={"https://www.google.com/search?q=" + valor.label }   target="_blank" rel="noopener noreferrer">{valor.label}</a></p>
-          <DatePicker defaultValue={moment()} onChange={this.onChange} />
-          <span></span>
-          <Button icon="plus" size="large" onClick={this.AddItemToWishList}>Add to list</Button>
+          <p>Continente: {valor.label}  </p>
+          <p>Capital: {valor.label} </p>
+          <p>More information about   <a href={"https://www.google.com/search?q=" + valor.label }   target="_blank" rel="noopener noreferrer">{valor.label}</a></p>         
+          
+          <DatePicker defaultValue={moment().add(60,'days')} onChange={this.onChange} />
+          <Button style={{  marginLeft:10}} icon="plus"  onClick={this.AddItemToWishList}>Add to list</Button>
         </Card>
       </div>
     );

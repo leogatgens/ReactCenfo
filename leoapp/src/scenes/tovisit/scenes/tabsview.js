@@ -12,10 +12,8 @@ const TabPane = Tabs.TabPane;
 
      if(props.data.state.error)
      {
-        return(  
-          
-            <div>
-                    
+        return(            
+            <div>                    
             <Tabs defaultActiveKey="1" onChange={props.callback}>                
                 <TabPane tab="Wish list" key="1">
                 <p>Lo sentimos algo salio mal:  {props.data.state.error}</p> 
@@ -23,16 +21,11 @@ const TabPane = Tabs.TabPane;
                 <TabPane tab="Add to Wish List" key="2">
                 <p>Lo sentimos algo salio mal:  {props.data.state.error}</p> 
                 </TabPane>
-
-            </Tabs>
-                
-            
-           
+            </Tabs>                        
           </div>
           );
      }
-      return(  
-          
+      return(            
         <div>
         {         
            <Tabs defaultActiveKey="1" onChange={props.callback}>                
@@ -41,15 +34,13 @@ const TabPane = Tabs.TabPane;
             </TabPane>
             <TabPane tab="Add to Wish List" key="2">
                 <Wrapper>
-                    <TituloPrincipal>Escoga países por visitar</TituloPrincipal>
+                    <TituloPrincipal>Países por visitar</TituloPrincipal>
                     <SelectCountry  data = {props}  ></SelectCountry>           
                 </Wrapper>
             </TabPane>
 
-            </Tabs>
-            
-        }
-       
+            </Tabs>            
+        }       
       </div>         
     );
 }
