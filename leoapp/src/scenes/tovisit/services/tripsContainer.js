@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs,message } from 'antd';
+import { message } from 'antd';
 import { GLOBALS} from '../../globals/globals-variables';
 import TabsView from '../scenes/tabsview'
 

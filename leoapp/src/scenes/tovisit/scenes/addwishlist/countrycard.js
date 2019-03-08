@@ -6,10 +6,7 @@ import moment from 'moment';
 let selectedDate = moment();
 
 class CountryCard extends React.Component {
-  constructor(props){
-    super(props);
-            
-  }
+
    onChange(date) { 
     selectedDate = date;
   }
