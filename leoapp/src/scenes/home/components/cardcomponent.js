@@ -1,7 +1,7 @@
 import { Card } from 'antd';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { GLOBALS} from '../../globals/globals-variables';
 
 const ContenedorCardsMobile = () => {
     return(
@@ -11,7 +11,7 @@ const ContenedorCardsMobile = () => {
       type="inner"
       style={{ width: 300 }}
       title="Registra tus viajes"
-      cover={<img alt="example" src="https://yourtripssite.z19.web.core.windows.net/img/travel1.jpg"  />}
+      cover={<img alt="example" src={`${GLOBALS.rootImages}/travel1.jpg`}  />}
       extra={<NavLink exact to="/misviajes" className="nav-link" activeclassname="active">More</NavLink>}
     >
       Registra tus viajes, las fechas y los lugares que visitados.
@@ -19,7 +19,7 @@ const ContenedorCardsMobile = () => {
     <Card
       style={{ marginTop: 16, width: 300 }}
       type="inner"
-      cover={<img alt="example" src="https://yourtripssite.z19.web.core.windows.net/img/traveltime.jpg" />}
+      cover={<img alt="example" src={`${GLOBALS.rootImages}/traveltime.jpg`} />}
       title="Registra tus próximos destinos"
       extra={<NavLink exact to="/porvisitar" className="nav-link" activeclassname="active">More</NavLink>}
     >
@@ -29,4 +29,4 @@ const ContenedorCardsMobile = () => {
     );
 }
 
-export {ContenedorCardsMobile};
+export   {ContenedorCardsMobile};
